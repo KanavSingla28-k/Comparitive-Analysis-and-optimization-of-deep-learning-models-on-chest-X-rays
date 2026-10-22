@@ -1,0 +1,11 @@
+source_index,label,image_sha256,matching_validation_indices,matching_test_indices,reason
+289,1,b604e667a940f3358efc81d7ae1ecb4edde4c726b10698c79ebd8fcdce340259,172,,Exact image overlap with retained validation or preserved test
+662,1,e19690cc2a5b9e6b1f094e42bd605961b57da08ed239c4f4bc087337f8388bab,236,,Exact image overlap with retained validation or preserved test
+1440,1,04e355aea5511e901096dc96465b5456bdcfe161f804b817de95b94eaa3af50e,253,,Exact image overlap with retained validation or preserved test
+1834,1,33865305602a0c6c79deef39410468691a707a4266704722649975ee1337bd3c,473,,Exact image overlap with retained validation or preserved test
+2041,1,b5bbd638ce95855fc8d5a0bb3da9df3992cacc154d598735e418560b4ee9df4e,61,,Exact image overlap with retained validation or preserved test
+3130,1,8afa1959b29dc499e45d772badeb62e4a116cb563e33bc55827ddf7dadf33043,302,,Exact image overlap with retained validation or preserved test
+3170,1,b604e667a940f3358efc81d7ae1ecb4edde4c726b10698c79ebd8fcdce340259,172,,Exact image overlap with retained validation or preserved test
+3874,1,04e355aea5511e901096dc96465b5456bdcfe161f804b817de95b94eaa3af50e,253,,Exact image overlap with retained validation or preserved test
+4036,1,885a64cebb078b337f92e7fbeca72a820adc52adc45b996896790c6196d5ce24,244,,Exact image overlap with retained validation or preserved test
+4193,1,c0a5fc53339d4eedc5bcaf6f6cd414f99f3de7d47324a5bfb7d1747ed5aa33aa,105,,Exact image overlap with retained validation or preserved test

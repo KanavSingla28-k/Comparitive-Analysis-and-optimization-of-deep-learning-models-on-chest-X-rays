@@ -1,0 +1,57 @@
+[
+  {
+    "epoch": 1,
+    "phase": "head",
+    "train_loss": 0.13455951117413661,
+    "val_unweighted_bce": 0.1657719761133194,
+    "val_auroc": 0.9827287441683328,
+    "val_ap": 0.9940531544593116,
+    "training_seconds": 3.193619999990915,
+    "training_images_per_second": 1471.057921735637,
+    "trainable_parameters": 513
+  },
+  {
+    "epoch": 2,
+    "phase": "head",
+    "train_loss": 0.07528043432710728,
+    "val_unweighted_bce": 0.13153071701526642,
+    "val_auroc": 0.9882033704655813,
+    "val_ap": 0.9959744939250271,
+    "training_seconds": 2.601499700002023,
+    "training_images_per_second": 1805.8814306210938,
+    "trainable_parameters": 513
+  },
+  {
+    "epoch": 3,
+    "phase": "head",
+    "train_loss": 0.06531428844180702,
+    "val_unweighted_bce": 0.1405898928642273,
+    "val_auroc": 0.9885651718556603,
+    "val_ap": 0.996106055245537,
+    "training_seconds": 2.612884700007271,
+    "training_images_per_second": 1798.0127481273578,
+    "trainable_parameters": 513
+  },
+  {
+    "epoch": 4,
+    "phase": "head",
+    "train_loss": 0.06431175546983091,
+    "val_unweighted_bce": 0.1363118588924408,
+    "val_auroc": 0.9891078739407788,
+    "val_ap": 0.9962958685579979,
+    "training_seconds": 2.6156773999973666,
+    "training_images_per_second": 1796.0930503145112,
+    "trainable_parameters": 513
+  },
+  {
+    "epoch": 5,
+    "phase": "head",
+    "train_loss": 0.06344283596410706,
+    "val_unweighted_bce": 0.12977594137191772,
+    "val_auroc": 0.9895363229553461,
+    "val_ap": 0.996442470412607,
+    "training_seconds": 2.6487496999907307,
+    "training_images_per_second": 1773.667024867031,
+    "trainable_parameters": 513
+  }
+]

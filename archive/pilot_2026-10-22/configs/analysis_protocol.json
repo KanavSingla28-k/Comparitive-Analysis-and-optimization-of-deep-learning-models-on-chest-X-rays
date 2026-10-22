@@ -1,0 +1,14 @@
+{
+  "primary_metric": "pneumonia test AUROC, mean over three seeds",
+  "secondary_metrics": ["average_precision", "F1", "precision", "recall", "specificity", "accuracy", "balanced_accuracy"],
+  "fixed_threshold": 0.5,
+  "checkpoint_selection": "final epoch, no test-dependent selection",
+  "seed_variability": "sample standard deviation across 42,43,44",
+  "bootstrap_seed": 20261022,
+  "bootstrap_repetitions": 2000,
+  "bootstrap_unit": "exact-image-hash clusters in test, plus resampled paired training seeds",
+  "paired_comparisons": ["ResNet partial minus frozen", "ResNet partial minus DenseNet partial", "MobileNet partial minus DenseNet partial"],
+  "inference_benchmark": "same seed42 weights; three interleaved FP32/AMP rounds at batch1; 30 warmups and 200 timed forwards each",
+  "training_capacity_probe": "synthetic full-gradient AdamW, fixed BN stats, batches 16 FP32/AMP and 32/64 AMP, 3 warmup and 10 timed steps, 70% VRAM stop rule; discard updated copies",
+  "interpretation": "Exploratory uncertainty intervals, not adjusted confirmatory hypothesis tests; unknown patient clustering remains"
+}

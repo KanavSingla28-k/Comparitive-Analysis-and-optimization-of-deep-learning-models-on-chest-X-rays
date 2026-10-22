@@ -1,0 +1,18 @@
+{
+  "captured_date": "2026-10-22",
+  "source_url": "https://raw.githubusercontent.com/MedMNIST/MedMNIST/main/medmnist/info.py",
+  "source_owner": "MedMNIST official repository",
+  "source_branch": "main; this file records the relevant retrieved values",
+  "dataset_key": "pneumoniamnist",
+  "python_class": "PneumoniaMNIST",
+  "task": "binary-class",
+  "population": "pediatric chest X-rays",
+  "label": {"0": "normal", "1": "pneumonia"},
+  "n_channels": 1,
+  "n_samples": {"train": 4708, "val": 524, "test": 624},
+  "url_224": "https://zenodo.org/records/10519652/files/pneumoniamnist_224.npz?download=1",
+  "MD5_224": "d6a3c71de1b945ea11211b03746c1fe1",
+  "license": "CC BY 4.0",
+  "release_page": "https://zenodo.org/records/10519652",
+  "dataset_paper": "https://www.nature.com/articles/s41597-022-01721-8"
+}

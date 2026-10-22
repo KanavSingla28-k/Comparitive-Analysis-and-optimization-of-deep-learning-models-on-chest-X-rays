@@ -1,0 +1,14 @@
+{
+  "project_root": "C:/Users/kanaa/OneDrive/Desktop/irs",
+  "shared_gpu_python": "C:/Users/kanaa/Documents/Codex/ml-gpu-env/Scripts/python.exe",
+  "reference_pipeline_relative_path": "archive/pilot_2026-10-22/src/experiment.py",
+  "preserved_dependencies_relative_path": "archive/pilot_2026-10-22/.deps",
+  "canonical_dataset_relative_path": "archive/pilot_2026-10-22/data/pneumoniamnist_224.npz",
+  "accepted_split_indices_relative_root": "03_data/manifests",
+  "readiness_output_relative_root": "04_implementation/verification",
+  "future_versioned_experiment_relative_root": "05_experiments",
+  "accepted_results_relative_root": "06_results",
+  "archive_policy": "preserve existing source, configurations, data, checkpoints, and numerical outputs",
+  "new_execution_policy": "bind versioned active outputs explicitly before invoking mutating pipeline functions; do not use archived CLI output defaults for a new study",
+  "new_training_runner_created": false
+}

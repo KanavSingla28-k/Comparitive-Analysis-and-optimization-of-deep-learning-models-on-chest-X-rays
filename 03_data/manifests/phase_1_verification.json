@@ -1,0 +1,144 @@
+{
+  "phase": 1,
+  "verified_utc": "2026-10-22T15:55:20.532192+00:00",
+  "project_root": "C:\\Users\\kanaa\\OneDrive\\Desktop\\irs",
+  "dataset_relative_path": "archive/pilot_2026-10-22/data/pneumoniamnist_224.npz",
+  "dataset_bytes": 214384716,
+  "dataset_md5": "d6a3c71de1b945ea11211b03746c1fe1",
+  "dataset_sha256": "2a6faaca43872b4bcf4154a79625631ab29683b41e265ab7936d0513351fe591",
+  "expected_md5": "d6a3c71de1b945ea11211b03746c1fe1",
+  "array_keys": [
+    "test_images",
+    "test_labels",
+    "train_images",
+    "train_labels",
+    "val_images",
+    "val_labels"
+  ],
+  "class_mapping": {
+    "0": "normal",
+    "1": "pneumonia"
+  },
+  "splits": {
+    "train": {
+      "raw_count": 4708,
+      "retained_count": 4698,
+      "removed_count": 10,
+      "image_shape": [
+        4708,
+        224,
+        224
+      ],
+      "image_dtype": "uint8",
+      "label_shape": [
+        4708,
+        1
+      ],
+      "label_dtype": "uint8",
+      "raw_label_counts": {
+        "normal_0": 1214,
+        "pneumonia_1": 3494
+      },
+      "retained_label_counts": {
+        "normal_0": 1214,
+        "pneumonia_1": 3484
+      },
+      "raw_pixel_min": 0,
+      "raw_pixel_max": 255,
+      "raw_unique_images": 4690,
+      "raw_duplicate_excess": 18,
+      "retained_unique_images": 4682,
+      "retained_duplicate_excess": 16,
+      "exact_hash_groups_with_conflicting_labels": 0,
+      "indices_sha256": "622877255bb9a46701e796b2ff5b4308c8fd04604aab6ca395fd0912016fd89c"
+    },
+    "val": {
+      "raw_count": 524,
+      "retained_count": 524,
+      "removed_count": 0,
+      "image_shape": [
+        524,
+        224,
+        224
+      ],
+      "image_dtype": "uint8",
+      "label_shape": [
+        524,
+        1
+      ],
+      "label_dtype": "uint8",
+      "raw_label_counts": {
+        "normal_0": 135,
+        "pneumonia_1": 389
+      },
+      "retained_label_counts": {
+        "normal_0": 135,
+        "pneumonia_1": 389
+      },
+      "raw_pixel_min": 0,
+      "raw_pixel_max": 255,
+      "raw_unique_images": 524,
+      "raw_duplicate_excess": 0,
+      "retained_unique_images": 524,
+      "retained_duplicate_excess": 0,
+      "exact_hash_groups_with_conflicting_labels": 0,
+      "indices_sha256": "9d8fe7015ca541541b7fd5c4e2c69745f29d6954f80dcf61dc9684d9ae9ab08a"
+    },
+    "test": {
+      "raw_count": 624,
+      "retained_count": 624,
+      "removed_count": 0,
+      "image_shape": [
+        624,
+        224,
+        224
+      ],
+      "image_dtype": "uint8",
+      "label_shape": [
+        624,
+        1
+      ],
+      "label_dtype": "uint8",
+      "raw_label_counts": {
+        "normal_0": 234,
+        "pneumonia_1": 390
+      },
+      "retained_label_counts": {
+        "normal_0": 234,
+        "pneumonia_1": 390
+      },
+      "raw_pixel_min": 0,
+      "raw_pixel_max": 255,
+      "raw_unique_images": 621,
+      "raw_duplicate_excess": 3,
+      "retained_unique_images": 621,
+      "retained_duplicate_excess": 3,
+      "exact_hash_groups_with_conflicting_labels": 0,
+      "indices_sha256": "a244c55f67929d443d9008d43797619e6fe99f51b3f095d59c1dff178e2fb463"
+    }
+  },
+  "raw_exact_unique_hash_overlaps": {
+    "train_val": 8,
+    "train_test": 0,
+    "val_test": 0
+  },
+  "retained_exact_unique_hash_overlaps": {
+    "train_val": 0,
+    "train_test": 0,
+    "val_test": 0
+  },
+  "retained_indices_match_recorded_cleanup_policy": true,
+  "test_indices_unchanged": true,
+  "raw_dataset_unchanged": true,
+  "patient_identifiers_available": false,
+  "test_exact_image_clusters": 621,
+  "within_split_duplicates_preserved_for_pilot_reproduction": true,
+  "manifest_sha256": {
+    "train_manifest.csv": "c10eaa0309d85b5251c57a3eae039fd92257f4dfe2fe8f67833f41c8b84594b9",
+    "val_manifest.csv": "f9bef53b31d5a0a3a5ba923ec770cb02932b6190d065108a85cfc8c67afef820",
+    "test_manifest.csv": "22e16028a27fae5e47bf8ae2696f2017e57d442bb6c48008e2d1e26b947a3995"
+  },
+  "training_positive_weight_from_retained_labels": 0.3484500574052813,
+  "model_execution_performed": false,
+  "status": "PASS"
+}

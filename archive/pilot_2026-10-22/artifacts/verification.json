@@ -1,0 +1,22 @@
+{
+  "completed_runs_verified": 12,
+  "checkpoint_hashes_verified": [
+    "resnet18_frozen_seed42",
+    "resnet18_partial_seed42",
+    "densenet121_partial_seed42",
+    "mobilenet_v3_small_partial_seed42",
+    "resnet18_frozen_seed43",
+    "resnet18_partial_seed43",
+    "densenet121_partial_seed43",
+    "mobilenet_v3_small_partial_seed43",
+    "resnet18_frozen_seed44",
+    "resnet18_partial_seed44",
+    "densenet121_partial_seed44",
+    "mobilenet_v3_small_partial_seed44"
+  ],
+  "auroc_independently_recomputed_from_ranks": true,
+  "confusion_counts_and_f1_recomputed": true,
+  "paired_initial_checkpoint_hashes_match": true,
+  "post_cleanup_exact_cross_split_overlaps": 0,
+  "training_source_and_config_match_protocol_lock": true
+}

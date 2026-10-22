@@ -1,0 +1,61 @@
+{
+  "created_utc": "2026-10-22T14:45:42.187837+00:00",
+  "url": "https://zenodo.org/records/10519652/files/pneumoniamnist_224.npz?download=1",
+  "md5": "d6a3c71de1b945ea11211b03746c1fe1",
+  "file_bytes": 214384716,
+  "array_keys": [
+    "train_images",
+    "train_labels",
+    "val_images",
+    "val_labels",
+    "test_images",
+    "test_labels"
+  ],
+  "class_mapping_source": "MedMNIST official metadata: 0 normal, 1 pneumonia",
+  "splits": {
+    "train": {
+      "images": 4708,
+      "shape": [
+        4708,
+        224,
+        224
+      ],
+      "normal_0": 1214,
+      "pneumonia_1": 3494,
+      "within_split_duplicate_images": 18,
+      "retained": 4698
+    },
+    "val": {
+      "images": 524,
+      "shape": [
+        524,
+        224,
+        224
+      ],
+      "normal_0": 135,
+      "pneumonia_1": 389,
+      "within_split_duplicate_images": 0,
+      "retained": 524
+    },
+    "test": {
+      "images": 624,
+      "shape": [
+        624,
+        224,
+        224
+      ],
+      "normal_0": 234,
+      "pneumonia_1": 390,
+      "within_split_duplicate_images": 3,
+      "retained": 624
+    }
+  },
+  "cross_split_unique_exact_overlaps": {
+    "train_val": 8,
+    "train_test": 0,
+    "val_test": 0
+  },
+  "patient_ids_available": false,
+  "limitation": "No patient IDs in NPZ. Exact image hashes do not establish patient independence.",
+  "cleanup": "Remove development images identical to test; remove train images identical to retained validation."
+}

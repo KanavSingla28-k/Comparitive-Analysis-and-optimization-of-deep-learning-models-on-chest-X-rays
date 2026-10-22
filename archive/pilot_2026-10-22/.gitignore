@@ -1,0 +1,7 @@
+.deps/
+data/
+.cache/
+__pycache__/
+artifacts/checkpoints/
+artifacts/features/
+*.log

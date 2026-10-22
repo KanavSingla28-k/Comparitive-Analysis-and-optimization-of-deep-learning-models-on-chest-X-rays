@@ -1,0 +1,25 @@
+{
+  "numpy": {
+    "import": "PASS",
+    "module_path": "C:\\Users\\kanaa\\OneDrive\\Desktop\\irs\\archive\\pilot_2026-10-22\\.deps\\numpy\\__init__.py"
+  },
+  "sklearn": {
+    "import": "PASS",
+    "module_path": "C:\\Users\\kanaa\\OneDrive\\Desktop\\irs\\archive\\pilot_2026-10-22\\.deps\\sklearn\\__init__.py"
+  },
+  "scipy": {
+    "import": "PASS",
+    "module_path": "C:\\Users\\kanaa\\OneDrive\\Desktop\\irs\\archive\\pilot_2026-10-22\\.deps\\scipy\\__init__.py"
+  },
+  "matplotlib": {
+    "import": "PASS",
+    "module_path": "C:\\Users\\kanaa\\OneDrive\\Desktop\\irs\\archive\\pilot_2026-10-22\\.deps\\matplotlib\\__init__.py"
+  },
+  "PIL": {
+    "import": "PASS",
+    "module_path": "C:\\Users\\kanaa\\OneDrive\\Desktop\\irs\\archive\\pilot_2026-10-22\\.deps\\PIL\\__init__.py"
+  },
+  "matplotlib_agg": {
+    "import": "PASS"
+  }
+}

@@ -1,0 +1,45 @@
+# Python cache & build artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environments & dependency wheels/local caches
+.venv/
+venv/
+ENV/
+env/
+.deps/
+**/pilot_2026-10-22/.deps/
+
+# Model checkpoints and weights (>100MB / binary artifacts)
+*.pt
+*.pth
+*.bin
+*.onnx
+*.weights
+*.h5
+artifacts/checkpoints/
+**/artifacts/checkpoints/
+
+# Torch & HuggingFace hub caches
+.cache/
+**/.cache/
+
+# Dataset raw archives & binary tensors
+*.npz
+*.tar.gz
+*.zip
+03_data/raw/*.npz
+03_data/raw/*.zip
+03_data/raw/*.tar.gz
+archive/**/data/*.npz
+
+# Logs & temp files
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
