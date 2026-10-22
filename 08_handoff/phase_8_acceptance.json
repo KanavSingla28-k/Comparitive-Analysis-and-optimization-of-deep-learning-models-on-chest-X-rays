@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "protocol_id": "cxr_compare_v1",
+  "description": "Technical package assembled with source, final report, data/artifacts, references, environment instructions, explicit next experiment and retained-file hashes. College formatting and submission remain manual tasks.",
+  "primary_session": "retrained_v1",
+  "next_experiment_executed": false,
+  "new_training_this_phase": false
+}

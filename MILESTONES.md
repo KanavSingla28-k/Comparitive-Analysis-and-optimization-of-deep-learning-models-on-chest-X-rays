@@ -89,6 +89,8 @@ These are work allocations, not runtime guarantees. Existing pilot outputs can s
 
 ## Phase 3 — Freeze the comparison protocol
 
+**Completed on 22 October 2026.** Protocol `cxr_compare_v1` is adopted and hash-pinned; see `01_planning/PHASE_3_PROTOCOL.md`.
+
 **Purpose:** prevent changing experimental choices in response to test scores.
 
 **Proposed defaults to adopt or revise before execution:**
@@ -119,6 +121,8 @@ These are work allocations, not runtime guarantees. Existing pilot outputs can s
 **Complete when:** all runs can be identified in advance and existing evidence can be matched to this protocol. Changed settings require a new experiment version; do not mix them into one ranking.
 
 ## Phase 4 — Complete the comparative runs
+
+**Completed:** all nine core runs accepted; all twelve pilot checkpoints replayed exactly. A separate fresh full run also reproduced all original checkpoint files and test probabilities exactly. See `05_experiments/PHASE_4_RUN_ACCEPTANCE.md` and `04_implementation/REPRODUCTION_VALIDATION.md`.
 
 **Purpose:** obtain all required comparison evidence for the three architectures.
 

@@ -1,0 +1,13 @@
+{
+  "protocol_id": "cxr_compare_v1",
+  "checked_date_ist": "2026-10-22",
+  "status": "PASS",
+  "freeze_file_sha256": "161e0b993729f52fd208c5a246f92ca180209c09f43e976a61a170253df357d8",
+  "pinned_files_verified": 18,
+  "training_source_matches_original": true,
+  "analysis_source_matches_original": true,
+  "unique_run_ids": 12,
+  "core_runs": 9,
+  "controls": 3,
+  "new_experiments_executed": false
+}

@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "description": "Independent raw-prediction, weighted-pair bootstrap and raw-timing verification for both retained sessions; no new training or test-driven tuning.",
+  "sessions": {
+    "reproduced_v1": {
+      "status": "PASS",
+      "runs": 12,
+      "test_images": 624,
+      "description": "Prediction metrics, seed aggregation, paired intervals and saved timing summaries checked against underlying evidence."
+    },
+    "retrained_v1": {
+      "status": "PASS",
+      "runs": 12,
+      "test_images": 624,
+      "description": "Prediction metrics, seed aggregation, paired intervals and saved timing summaries checked against underlying evidence."
+    }
+  },
+  "checks_passed": 894,
+  "bootstrap": {
+    "replicates": 2000,
+    "clusters": 621,
+    "seed": 20261022,
+    "description": "Independent weighted positive-negative pair counting with half-credit for ties reproduces the original rank-sum resampling results within 1e-14."
+  },
+  "throughput_limitation": "Inference wall-throughput rates are recorded measurements. Original wall-duration denominators were not retained separately, so CUDA-event samples cannot independently reconstruct those denominators; case-selection/aggregation was checked against recorded rates. Synthetic step throughput is fully recomputed from saved synchronized wall step times.",
+  "primary_session": "retrained_v1",
+  "acceptance_scope": "Technical statistical/artifact review; not supervisor or clinical approval."
+}

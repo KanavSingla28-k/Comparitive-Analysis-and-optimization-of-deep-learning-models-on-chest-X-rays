@@ -1,0 +1,79 @@
+{
+  "status": "PASS",
+  "absolute_tolerance": 1e-06,
+  "runs": [
+    {
+      "run_id": "resnet18_frozen_seed42",
+      "status": "PASS",
+      "probabilities_max_absolute_replay_difference": 0.0,
+      "fp32_probabilities_max_absolute_replay_difference": 0.0
+    },
+    {
+      "run_id": "resnet18_partial_seed42",
+      "status": "PASS",
+      "probabilities_max_absolute_replay_difference": 0.0,
+      "fp32_probabilities_max_absolute_replay_difference": 0.0
+    },
+    {
+      "run_id": "densenet121_partial_seed42",
+      "status": "PASS",
+      "probabilities_max_absolute_replay_difference": 0.0,
+      "fp32_probabilities_max_absolute_replay_difference": 0.0
+    },
+    {
+      "run_id": "mobilenet_v3_small_partial_seed42",
+      "status": "PASS",
+      "probabilities_max_absolute_replay_difference": 0.0,
+      "fp32_probabilities_max_absolute_replay_difference": 0.0
+    },
+    {
+      "run_id": "resnet18_frozen_seed43",
+      "status": "PASS",
+      "probabilities_max_absolute_replay_difference": 0.0,
+      "fp32_probabilities_max_absolute_replay_difference": 0.0
+    },
+    {
+      "run_id": "resnet18_partial_seed43",
+      "status": "PASS",
+      "probabilities_max_absolute_replay_difference": 0.0,
+      "fp32_probabilities_max_absolute_replay_difference": 0.0
+    },
+    {
+      "run_id": "densenet121_partial_seed43",
+      "status": "PASS",
+      "probabilities_max_absolute_replay_difference": 0.0,
+      "fp32_probabilities_max_absolute_replay_difference": 0.0
+    },
+    {
+      "run_id": "mobilenet_v3_small_partial_seed43",
+      "status": "PASS",
+      "probabilities_max_absolute_replay_difference": 0.0,
+      "fp32_probabilities_max_absolute_replay_difference": 0.0
+    },
+    {
+      "run_id": "resnet18_frozen_seed44",
+      "status": "PASS",
+      "probabilities_max_absolute_replay_difference": 0.0,
+      "fp32_probabilities_max_absolute_replay_difference": 0.0
+    },
+    {
+      "run_id": "resnet18_partial_seed44",
+      "status": "PASS",
+      "probabilities_max_absolute_replay_difference": 0.0,
+      "fp32_probabilities_max_absolute_replay_difference": 0.0
+    },
+    {
+      "run_id": "densenet121_partial_seed44",
+      "status": "PASS",
+      "probabilities_max_absolute_replay_difference": 0.0,
+      "fp32_probabilities_max_absolute_replay_difference": 0.0
+    },
+    {
+      "run_id": "mobilenet_v3_small_partial_seed44",
+      "status": "PASS",
+      "probabilities_max_absolute_replay_difference": 0.0,
+      "fp32_probabilities_max_absolute_replay_difference": 0.0
+    }
+  ],
+  "description": "All twelve models were strictly loaded and executed on all 624 real test images in AMP and FP32. These numbers compare replay against the same precision, not AMP against FP32."
+}

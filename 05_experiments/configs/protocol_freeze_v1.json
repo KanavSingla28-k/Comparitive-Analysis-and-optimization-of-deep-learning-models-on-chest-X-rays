@@ -1,0 +1,83 @@
+{
+  "protocol_id": "cxr_compare_v1",
+  "version": 1,
+  "frozen_date_ist": "2026-10-22",
+  "freeze_purpose": "identify adopted protocol and evidence versions after recorded test exposure; not prospective registration",
+  "algorithm": "SHA-256",
+  "files": [
+    {
+      "relative_path": "01_planning/PHASE_3_PROTOCOL.md",
+      "sha256": "f1c83fc6a21ff067eb6d68fdde4b0aad5525914d3ac4b7d3eb5b4fd435971925"
+    },
+    {
+      "relative_path": "05_experiments/configs/comparison_protocol_v1.json",
+      "sha256": "40d0bba4b8ca41dd66b58dbf4de9a358f3c2d33335eb6554d00ec27387717ba7"
+    },
+    {
+      "relative_path": "05_experiments/configs/run_matrix_v1.json",
+      "sha256": "f89dbaffb878beeab527c1f2fb32b61ef67a2c14cdaa498889e88ae6f2ff6cfc"
+    },
+    {
+      "relative_path": "05_experiments/configs/protocol_compatibility_v1.json",
+      "sha256": "54e631d15553b81dbf2e134dfcc318ef8f11e9f8b724337c35432b50ffa99f01"
+    },
+    {
+      "relative_path": "05_experiments/EXPERIMENT_MANIFEST_v1.json",
+      "sha256": "d9ce9040babc384bdfc1ee292f10980d0cfdf3a4c5644b202a89f0a73815a91a"
+    },
+    {
+      "relative_path": "03_data/manifests/phase_1_verification.json",
+      "sha256": "6215293e22877c1ee4e61f88fd2ddafc0c78dffe096dde9ed2b874d6f82c4d34"
+    },
+    {
+      "relative_path": "03_data/manifests/train_indices.npy",
+      "sha256": "622877255bb9a46701e796b2ff5b4308c8fd04604aab6ca395fd0912016fd89c"
+    },
+    {
+      "relative_path": "03_data/manifests/val_indices.npy",
+      "sha256": "9d8fe7015ca541541b7fd5c4e2c69745f29d6954f80dcf61dc9684d9ae9ab08a"
+    },
+    {
+      "relative_path": "03_data/manifests/test_indices.npy",
+      "sha256": "a244c55f67929d443d9008d43797619e6fe99f51b3f095d59c1dff178e2fb463"
+    },
+    {
+      "relative_path": "04_implementation/verification/phase_2_readiness.json",
+      "sha256": "cb9875077c09a7139e132769fd55d3590563c425f7497bca4e7122aa552c8e1c"
+    },
+    {
+      "relative_path": "04_implementation/phase_2_runtime_paths.json",
+      "sha256": "ee220d27209b1cd1cb90d6c82efbe247eb38c31482b1ba571579f83da707dca7"
+    },
+    {
+      "relative_path": "archive/pilot_2026-10-22/configs/experiment.json",
+      "sha256": "fc16ef4da26efd59c6d8030b3358520b7ea8bebddb3e94f2227c1c4b8d506716"
+    },
+    {
+      "relative_path": "archive/pilot_2026-10-22/configs/analysis_protocol.json",
+      "sha256": "1a22c0bc9e58a992d870d22e4c8a0d3ad14ccdb4e4882f7e6913e86a41751e78"
+    },
+    {
+      "relative_path": "archive/pilot_2026-10-22/artifacts/protocol_lock.json",
+      "sha256": "245d86b73b2bdb73354063b901c69086b409b1cc8961f938317033b27c427b21"
+    },
+    {
+      "relative_path": "archive/pilot_2026-10-22/src/experiment.py",
+      "sha256": "8e40d09dc07cdbe8ebd335d876feac7bfc8330204e54a3f8b95e7f8db49dafd1"
+    },
+    {
+      "relative_path": "archive/pilot_2026-10-22/src/analyze.py",
+      "sha256": "4795ee36a18a0c545053ff18d076940423f4296f4d00df81dc811812bf75ff7f"
+    },
+    {
+      "relative_path": "archive/pilot_2026-10-22/src/hardware_probe.py",
+      "sha256": "b7bb5d517c19a60ac46694257e8095e1d4485c8896c7516f9a83af9c23865216"
+    },
+    {
+      "relative_path": "archive/pilot_2026-10-22/requirements-lock.txt",
+      "sha256": "1e23f72311b336eddc8de1e6cc21b6efa916c7d764d90a34244db9e66190c41d"
+    }
+  ],
+  "mutability_rule": "preserve pinned files; create a superseding protocol version for any later correction",
+  "new_training_started": false
+}

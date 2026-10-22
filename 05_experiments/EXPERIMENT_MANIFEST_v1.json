@@ -1,0 +1,17 @@
+{
+  "protocol_id": "cxr_compare_v1",
+  "record_type": "immutable evidence-adoption specification",
+  "adopted_date_ist": "2026-10-22",
+  "core_matrix_relative_path": "05_experiments/configs/run_matrix_v1.json",
+  "protocol_relative_path": "05_experiments/configs/comparison_protocol_v1.json",
+  "data_acceptance_relative_path": "03_data/PHASE_1_DATA_ACCEPTANCE.md",
+  "readiness_relative_path": "04_implementation/PHASE_2_READINESS.md",
+  "human_protocol_relative_path": "01_planning/PHASE_3_PROTOCOL.md",
+  "source_evidence_relative_root": "archive/pilot_2026-10-22",
+  "later_run_acceptance_relative_path": "05_experiments/run_acceptance_v1.json",
+  "later_statistics_relative_root": "06_results/statistics",
+  "core_run_count": 9,
+  "optimization_control_count": 3,
+  "run_acceptance_not_yet_completed": true,
+  "archive_must_remain_preserved": true
+}
