@@ -1,0 +1,54 @@
+{
+  "id": "mobilenet_v3_small_partial_seed42",
+  "architecture": "mobilenet_v3_small",
+  "seed": 42,
+  "weights": "MobileNet_V3_Small_Weights.IMAGENET1K_V1",
+  "completed_utc": "2026-10-22T14:48:38.252382+00:00",
+  "epochs": 5,
+  "parameters": 1518881,
+  "checkpoint_bytes_fp32": 6203387,
+  "phase_details": [
+    {
+      "seconds_including_validation": 11.572100200006389,
+      "peak_allocated_mib_including_data": 457.78564453125,
+      "trainable_names": [
+        "classifier.0.weight",
+        "classifier.0.bias",
+        "classifier.3.weight",
+        "classifier.3.bias"
+      ],
+      "positive_weight": 0.34845006465911865
+    },
+    {
+      "seconds_including_validation": 10.019936299999245,
+      "peak_allocated_mib_including_data": 461.99267578125,
+      "trainable_names": [
+        "features.11.block.0.0.weight",
+        "features.11.block.0.1.weight",
+        "features.11.block.0.1.bias",
+        "features.11.block.1.0.weight",
+        "features.11.block.1.1.weight",
+        "features.11.block.1.1.bias",
+        "features.11.block.2.fc1.weight",
+        "features.11.block.2.fc1.bias",
+        "features.11.block.2.fc2.weight",
+        "features.11.block.2.fc2.bias",
+        "features.11.block.3.0.weight",
+        "features.11.block.3.1.weight",
+        "features.11.block.3.1.bias",
+        "features.12.0.weight",
+        "features.12.1.weight",
+        "features.12.1.bias",
+        "classifier.0.weight",
+        "classifier.0.bias",
+        "classifier.3.weight",
+        "classifier.3.bias"
+      ],
+      "positive_weight": 0.34845006465911865
+    }
+  ],
+  "shared_epoch2_hash": "43d598b5d20ff57ec7f1b037e751cff100022e1cad5b0b87d5e9110fe627bc1e",
+  "checkpoint_sha256": "666c0dba5339c9e055496b76faa753b3cb34f55eb0e85ed9040fbfc03ebac27b",
+  "total_seconds_including_validation": 21.592036500005634,
+  "final_validation_auroc": 0.9958868894601544
+}

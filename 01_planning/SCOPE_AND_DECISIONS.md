@@ -47,4 +47,4 @@ Team/student identifiers, official course title, guide details, report template,
 
 ## Next milestone
 
-Phases 1 and 2 are complete; see dataset acceptance and `../04_implementation/PHASE_2_READINESS.md`. Next: Phase 3 — freeze the detailed comparison protocol. No new comparison training is required merely to advance that review.
+Phases 1–3 are complete. The adopted detailed protocol is `cxr_compare_v1`; see `PHASE_3_PROTOCOL.md`. Next: Phase 4 — accept the nine core run artifacts against the frozen matrix. Preserve the existing results and protocol files.

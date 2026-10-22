@@ -1,5 +1,5 @@
 # College requirements
 
-Place the assignment brief, marking rubric, official report template, or submission instructions here when available. Fill the administrative summary in `01_planning/PROJECT_DETAILS.md`.
+The technical report and evidence package are complete. Team names, roll numbers, NSUT/CSDS, IRS and Ms. Ayushi are taken from `01_planning/PROJECT_DETAILS.md`. The person-to-roll-number mapping has not been inferred.
 
-No rubric or supervisor decision is assumed to have been supplied. This folder is prepared for those documents; Phase 1 can proceed using the adopted working scope.
+No official report template or marking rubric was supplied. Apply one if your college requires it, confirm the administrative details and submit through the normal college process. These manual tasks do not imply a missing training or analysis result, and no supervisor signature is invented.

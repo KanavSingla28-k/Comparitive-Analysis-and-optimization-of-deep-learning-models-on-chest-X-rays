@@ -1,0 +1,6 @@
+figure,source_relative_to_fresh_artifacts,description
+test_curves.png,predictions/*seed42.npz,"ROC and PR computed from real labels/probabilities; illustrative seed 42, no ensemble"
+confusion_matrices.png,predictions/*seed42.npz,Counts from probability >=0.5; illustrative seed 42
+training_curves.png,history/*.json,Mean and sample SD at each epoch across three seeds
+performance_cost.png,statistical_summary.json + history/*_manifest.json,"Per-model AUROC mean/SD, measured AMP forward latency and training wall duration"
+hardware_scaling.png,benchmarks/inference.json,Recorded per-batch synchronized wall throughput and allocation

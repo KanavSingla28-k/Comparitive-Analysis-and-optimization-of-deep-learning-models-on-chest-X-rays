@@ -1,0 +1,49 @@
+{
+  "id": "resnet18_partial_seed42",
+  "architecture": "resnet18",
+  "seed": 42,
+  "weights": "ResNet18_Weights.IMAGENET1K_V1",
+  "completed_utc": "2026-10-22T16:39:48.573508+00:00",
+  "epochs": 5,
+  "parameters": 11177025,
+  "checkpoint_bytes_fp32": 44785227,
+  "phase_details": [
+    {
+      "seconds_including_validation": 5.9031512000074144,
+      "peak_allocated_mib_including_data": 640.07958984375,
+      "trainable_names": [
+        "fc.weight",
+        "fc.bias"
+      ],
+      "positive_weight": 0.34845006465911865
+    },
+    {
+      "seconds_including_validation": 13.5408652999904,
+      "peak_allocated_mib_including_data": 736.13818359375,
+      "trainable_names": [
+        "layer4.0.conv1.weight",
+        "layer4.0.bn1.weight",
+        "layer4.0.bn1.bias",
+        "layer4.0.conv2.weight",
+        "layer4.0.bn2.weight",
+        "layer4.0.bn2.bias",
+        "layer4.0.downsample.0.weight",
+        "layer4.0.downsample.1.weight",
+        "layer4.0.downsample.1.bias",
+        "layer4.1.conv1.weight",
+        "layer4.1.bn1.weight",
+        "layer4.1.bn1.bias",
+        "layer4.1.conv2.weight",
+        "layer4.1.bn2.weight",
+        "layer4.1.bn2.bias",
+        "fc.weight",
+        "fc.bias"
+      ],
+      "positive_weight": 0.34845006465911865
+    }
+  ],
+  "shared_epoch2_hash": "36c563fdc91171cffad8ec3d8450de7f03215e0593f40635384b24bfe42985c7",
+  "checkpoint_sha256": "3aa0805cd091c7111d99f6482ec742e885f2cff83062202dcc935463a4f5f9b5",
+  "total_seconds_including_validation": 19.444016499997815,
+  "final_validation_auroc": 0.9992954393982671
+}

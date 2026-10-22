@@ -1,0 +1,34 @@
+{
+  "id": "resnet18_frozen_seed42",
+  "architecture": "resnet18",
+  "seed": 42,
+  "weights": "ResNet18_Weights.IMAGENET1K_V1",
+  "completed_utc": "2026-10-22T16:39:34.905261+00:00",
+  "epochs": 5,
+  "parameters": 11177025,
+  "checkpoint_bytes_fp32": 44785099,
+  "phase_details": [
+    {
+      "seconds_including_validation": 5.9031512000074144,
+      "peak_allocated_mib_including_data": 640.07958984375,
+      "trainable_names": [
+        "fc.weight",
+        "fc.bias"
+      ],
+      "positive_weight": 0.34845006465911865
+    },
+    {
+      "seconds_including_validation": 8.47454279998783,
+      "peak_allocated_mib_including_data": 640.07958984375,
+      "trainable_names": [
+        "fc.weight",
+        "fc.bias"
+      ],
+      "positive_weight": 0.34845006465911865
+    }
+  ],
+  "shared_epoch2_hash": "36c563fdc91171cffad8ec3d8450de7f03215e0593f40635384b24bfe42985c7",
+  "checkpoint_sha256": "a3cdc1783f7fddcd11530fd0c10abd859d0ce70ffd26c60b194f6e274de5bc1c",
+  "total_seconds_including_validation": 14.377693999995245,
+  "final_validation_auroc": 0.9895363229553461
+}

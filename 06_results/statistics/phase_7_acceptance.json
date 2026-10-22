@@ -1,0 +1,128 @@
+{
+  "status": "PASS",
+  "protocol_id": "cxr_compare_v1",
+  "description": "Paired fine-tuning signal and hardware proof accepted with session variability and timing-input limitations disclosed. Technical acceptance is not supervisor approval.",
+  "paired_learning": {
+    "comparison": "ResNet-18 partial FT minus ResNet-18 frozen",
+    "delta_auroc_mean": 0.019417050186280815,
+    "ci95": [
+      0.01125598940472764,
+      0.029072018145645587
+    ],
+    "seed_deltas": [
+      0.016798159105851473,
+      0.020885382423843968,
+      0.02056760902914756
+    ],
+    "description": "Exploratory within-benchmark AUROC improvement, not compression."
+  },
+  "hardware_sessions": [
+    {
+      "session": "reproduced_v1",
+      "architecture": "resnet18",
+      "batch1_fp32_ms": 1.4888960123062134,
+      "batch1_amp_ms": 2.4392160177230835,
+      "batch1_amp_speedup": 0.6099795974191105,
+      "synthetic_batch16_amp_speedup": 2.03692970993484,
+      "synthetic_batch16_allocation_reduction_percent": 25.189272173640155,
+      "largest_tested_successful_training_batch": 64,
+      "amp_batch64_peak_mib": 1001.21630859375,
+      "description": "One session of short microbenchmarks, not an absolute hardware ceiling or an end-to-end acceleration guarantee."
+    },
+    {
+      "session": "reproduced_v1",
+      "architecture": "densenet121",
+      "batch1_fp32_ms": 10.22166395187378,
+      "batch1_amp_ms": 16.096735954284668,
+      "batch1_amp_speedup": 0.6271870305274989,
+      "synthetic_batch16_amp_speedup": 2.0033678148259706,
+      "synthetic_batch16_allocation_reduction_percent": 44.408221270240865,
+      "largest_tested_successful_training_batch": 64,
+      "amp_batch64_peak_mib": 4273.63623046875,
+      "description": "One session of short microbenchmarks, not an absolute hardware ceiling or an end-to-end acceleration guarantee."
+    },
+    {
+      "session": "reproduced_v1",
+      "architecture": "mobilenet_v3_small",
+      "batch1_fp32_ms": 4.20145583152771,
+      "batch1_amp_ms": 5.409791946411133,
+      "batch1_amp_speedup": 0.7766390783872871,
+      "synthetic_batch16_amp_speedup": 0.8586355660469933,
+      "synthetic_batch16_allocation_reduction_percent": 34.8527863909197,
+      "largest_tested_successful_training_batch": 64,
+      "amp_batch64_peak_mib": 628.86376953125,
+      "description": "One session of short microbenchmarks, not an absolute hardware ceiling or an end-to-end acceleration guarantee."
+    },
+    {
+      "session": "retrained_v1",
+      "architecture": "resnet18",
+      "batch1_fp32_ms": 1.5237120389938354,
+      "batch1_amp_ms": 2.5916320085525513,
+      "batch1_amp_speedup": 0.5879353372567897,
+      "synthetic_batch16_amp_speedup": 1.298858170184429,
+      "synthetic_batch16_allocation_reduction_percent": 25.295157533282097,
+      "largest_tested_successful_training_batch": 64,
+      "amp_batch64_peak_mib": 1001.65380859375,
+      "description": "One session of short microbenchmarks, not an absolute hardware ceiling or an end-to-end acceleration guarantee."
+    },
+    {
+      "session": "retrained_v1",
+      "architecture": "densenet121",
+      "batch1_fp32_ms": 10.713056087493896,
+      "batch1_amp_ms": 15.583888053894043,
+      "batch1_amp_speedup": 0.6839031889190746,
+      "synthetic_batch16_amp_speedup": 1.0280293732929673,
+      "synthetic_batch16_allocation_reduction_percent": 44.3109705885343,
+      "largest_tested_successful_training_batch": 64,
+      "amp_batch64_peak_mib": 4273.46435546875,
+      "description": "One session of short microbenchmarks, not an absolute hardware ceiling or an end-to-end acceleration guarantee."
+    },
+    {
+      "session": "retrained_v1",
+      "architecture": "mobilenet_v3_small",
+      "batch1_fp32_ms": 15.970304012298584,
+      "batch1_amp_ms": 21.723648071289062,
+      "batch1_amp_speedup": 0.7351575554846908,
+      "synthetic_batch16_amp_speedup": 2.959320109074996,
+      "synthetic_batch16_allocation_reduction_percent": 34.79494586479848,
+      "largest_tested_successful_training_batch": 64,
+      "amp_batch64_peak_mib": 629.43408203125,
+      "description": "One session of short microbenchmarks, not an absolute hardware ceiling or an end-to-end acceleration guarantee."
+    }
+  ],
+  "precision_consistency": [
+    {
+      "session": "retrained_v1",
+      "group": "resnet18_frozen",
+      "maximum_probability_difference": 0.0027600526809692383,
+      "threshold_disagreements_over_1872_seed_predictions": 0,
+      "maximum_absolute_auroc_difference": 4.383081306158498e-05,
+      "description": "Same real test images and checkpoint; precision difference is not checkpoint replay error."
+    },
+    {
+      "session": "retrained_v1",
+      "group": "resnet18_partial",
+      "maximum_probability_difference": 0.004155874252319336,
+      "threshold_disagreements_over_1872_seed_predictions": 1,
+      "maximum_absolute_auroc_difference": 3.835196142887298e-05,
+      "description": "Same real test images and checkpoint; precision difference is not checkpoint replay error."
+    },
+    {
+      "session": "retrained_v1",
+      "group": "densenet121_partial",
+      "maximum_probability_difference": 0.005753815174102783,
+      "threshold_disagreements_over_1872_seed_predictions": 0,
+      "maximum_absolute_auroc_difference": 5.4788516327008985e-05,
+      "description": "Same real test images and checkpoint; precision difference is not checkpoint replay error."
+    },
+    {
+      "session": "retrained_v1",
+      "group": "mobilenet_v3_small_partial",
+      "maximum_probability_difference": 0.08086025714874268,
+      "threshold_disagreements_over_1872_seed_predictions": 8,
+      "maximum_absolute_auroc_difference": 0.0005752794214333168,
+      "description": "Same real test images and checkpoint; precision difference is not checkpoint replay error."
+    }
+  ],
+  "next_experiment_executed": false
+}

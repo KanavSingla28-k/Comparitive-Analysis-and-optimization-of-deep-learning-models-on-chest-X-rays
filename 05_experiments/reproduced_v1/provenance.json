@@ -1,0 +1,31 @@
+{
+  "created_utc": "2026-10-22T16:38:08.435991+00:00",
+  "protocol_id": "cxr_compare_v1",
+  "mode": "saved_evidence_analysis_reproduction",
+  "new_training": false,
+  "source_evidence": "C:\\Users\\kanaa\\OneDrive\\Desktop\\irs\\archive\\pilot_2026-10-22",
+  "test_previously_examined": true,
+  "source_files": {
+    "04_implementation\\src\\analyze.py": "7e6db724eb021867dbe83ea9fe3fc4d7ff68436f8c749d3bb80a2487f88c1f61",
+    "04_implementation\\src\\experiment.py": "faa8f8898731211fbbc0946a44593d49fdc791fe44b3b1683f4b2b33dfe84d20",
+    "04_implementation\\src\\explained_results.py": "8917b66203b76a3fac638a1cc8d0e753ea5072489686ad21d1b8a273a902a512",
+    "04_implementation\\src\\hardware_probe.py": "b7bb5d517c19a60ac46694257e8095e1d4485c8896c7516f9a83af9c23865216",
+    "04_implementation\\src\\pipeline.py": "c6398509e60bde26fc40c99cf87ab4e484432a17318ede175215eb65313f2526",
+    "04_implementation\\src\\runtime.py": "95e35eef9d1da36cea7df346f8e6e647ccf99ae8fc127340b6dee70b1a2564b7",
+    "04_implementation\\src\\settings.py": "3d4c299260021602fa402abefaa1a8f5fb774c866780021762f2a60ba35d2dc1"
+  },
+  "analysis_execution": {
+    "created_utc": "2026-10-22T16:47:32.329127+00:00",
+    "description": "Current analysis/export source hashes. Original launch-time hashes remain in source_files. Session-specific timing interpretation is generated without changing training or saved predictions.",
+    "source_files": {
+      "04_implementation\\src\\analyze.py": "53e6163b3afddf6ce01fa1606ab7406f17bd0c8c7abc97a2ac9676dbd10eb04d",
+      "04_implementation\\src\\experiment.py": "faa8f8898731211fbbc0946a44593d49fdc791fe44b3b1683f4b2b33dfe84d20",
+      "04_implementation\\src\\explained_results.py": "8917b66203b76a3fac638a1cc8d0e753ea5072489686ad21d1b8a273a902a512",
+      "04_implementation\\src\\hardware_probe.py": "b7bb5d517c19a60ac46694257e8095e1d4485c8896c7516f9a83af9c23865216",
+      "04_implementation\\src\\pipeline.py": "4fa61d7c0c43e0f1717836f79c4e34df8630c8729340b8abd34d8ce4b11b7e1c",
+      "04_implementation\\src\\runtime.py": "95e35eef9d1da36cea7df346f8e6e647ccf99ae8fc127340b6dee70b1a2564b7",
+      "04_implementation\\src\\settings.py": "3d4c299260021602fa402abefaa1a8f5fb774c866780021762f2a60ba35d2dc1",
+      "04_implementation\\src\\validate_reproduction.py": "661e983d8464f7cb08791e9321e176c42e18d3a9d623624dfc523a01d2e2b117"
+    }
+  }
+}

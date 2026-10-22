@@ -1,39 +1,49 @@
-# IRS research — start here
+# IRS research — executable comparison
 
-Project home: `C:\Users\kanaa\OneDrive\Desktop\irs`.
+**Final technical package:** [completed report](07_report/FINAL_COMPARATIVE_REPORT.md), [handoff](08_handoff/START_HERE.md) and [optimization evidence](06_results/PHASE_7_OPTIMIZATION.md). Phases 0–8 are technically complete.
 
-**Current priority:** complete and document the three-model comparative analysis, then include a small, measured optimization proof of concept. This preparation step creates the folder structure and milestone documents. It does not implement code, run training, or generate new experimental results.
+Project root: `C:\Users\kanaa\OneDrive\Desktop\irs`.
 
-## Start with these documents
+A college-level comparison of ResNet-18, DenseNet-121 and MobileNetV3-Small on pediatric PneumoniaMNIST+ at 224 pixels, with three seeds, a paired fine-tuning control and measured RTX 4050 resource trade-offs.
 
-1. [Milestone phases](MILESTONES.md) — tasks, deliverables, dependencies, and completion criteria.
-2. [Milestone tracker](MILESTONE_TRACKER.md) — execution checklist and evidence log.
-3. [Scope and decisions](01_planning/SCOPE_AND_DECISIONS.md) — proposed study defaults and decisions to freeze before further experiments.
-4. [Original proposal](initial.md) — preserved source document.
+## Start here
 
-## Folder map
+- [Runnable commands and environment recreation](04_implementation/README.md)
+- [Pipeline, methodology and code map](04_implementation/PIPELINE.md)
+- [Supervisor demonstration guide](07_report/SUPERVISOR_GUIDE.md)
+- [Regenerated comparison report](06_results/reproduced_v1/comparative_analysis_report.md)
+- [Model comparison CSV](06_results/reproduced_v1/comparison_summary.csv) and [per-seed CSV](06_results/reproduced_v1/metrics.csv)
+- [Results with descriptions in the same JSON](06_results/reproduced_v1/results_explained.json)
 
-| Folder | Purpose |
+## Run from this folder
+
+```powershell
+.\run.ps1 verify
+.\run.ps1 reproduce-results -RunDir '05_experiments/demo_01'
+.\run.ps1 full -RunDir '05_experiments/fresh_01'
+```
+
+`verify` checks the existing evidence. `reproduce-results` executes all twelve saved checkpoints in both precisions and regenerates statistics, figures and reports. `full` starts from official pretrained weights and executes the complete training, evaluation and hardware pipeline. Use a new run-directory name when repeating adoption or preparation. The tested CUDA environment is selected automatically on this laptop.
+
+The implementation is in `04_implementation/src/`. Training choices are directly readable in **`settings.py`**. JSON is used for stored evidence and its explanations; readable CSV, Markdown, code, checkpoint files and raw prediction arrays are supplied alongside it.
+
+## Project map
+
+| Folder | Contents |
 |---|---|
-| `01_planning/` | Scope, decisions, previous audit, and original implementation plan |
-| `02_literature/` | Reading notes and citation records |
-| `03_data/` | Active-study dataset documentation and audited split records |
-| `04_implementation/` | Future implementation work; currently a preparation note only |
-| `05_experiments/` | Future run configurations, logs, and checkpoints |
-| `06_results/` | Accepted comparison tables, figures, and statistical analysis |
-| `07_report/` | College report draft and submission materials |
-| `archive/pilot_2026-10-22/` | Preserved earlier code, dependencies, dataset, pretrained weights, checkpoints, reports, and measured outputs |
+| `01_planning/` | Audit, scope, evidence-adoption protocol and decisions |
+| `02_literature/` | Literature materials |
+| `03_data/` | Accepted split indices, manifests and dataset documentation |
+| `04_implementation/` | Active Python pipeline, methodology, requirements and run instructions |
+| `05_experiments/` | Versioned runs, full checkpoints, histories, predictions, raw measurements and provenance |
+| `06_results/` | Regenerated reports, CSV tables, explained JSON and figures |
+| `07_report/` | Supervisor guide and report materials |
+| `archive/pilot_2026-10-22/` | Preserved original code, data, dependencies, pretrained weights and measured pilot evidence |
 
-The dated archive is a snapshot of the earlier workspace, excluding its Git metadata and this temporary folder-preparation staging area. The original `initial.md` at the project root is retained. The previous workspace is kept as a recovery copy.
+All new project files and outputs remain under this root. The existing shared Python installation is a runtime dependency; instructions for making a new local environment are included. The archive is a preserved input, while active output paths are explicit and versioned.
 
-## Status and reuse
+## Scope and evidence history
 
-The archive contains an earlier completed pilot comparison with twelve model/seed configurations and verification records. Those files are evidence available for review; the new tracker does not silently treat every formal milestone as signed off. Review and reuse satisfactory evidence rather than automatically repeating expensive work.
+The source proposal is [initial.md](initial.md). Its broad adult multi-finding theme was narrowed to an achievable pediatric binary benchmark for the one-evening college project. No novel architecture or clinical validation is claimed. The test scores had already been examined before formal protocol adoption; neither replay nor retraining makes that test split newly blinded.
 
-The archived test results have already been examined. Any new study using that same test split must disclose this history; do not describe it as a newly untouched test set. New optimization decisions should use validation data. A new confirmatory generalization claim needs an appropriate untouched evaluation set.
-
-All project materials are consolidated under this project home. The shared CUDA Python environment remains at `C:\Users\kanaa\Documents\Codex\ml-gpu-env`; it is a system resource referenced by the pilot, not relocated during folder preparation.
-
-**Phases 0, 1, and 2 are complete.** Read [the scope decision](01_planning/PHASE_0_DECISION_RECORD.md), [dataset acceptance](03_data/PHASE_1_DATA_ACCEPTANCE.md), [pipeline readiness](04_implementation/PHASE_2_READINESS.md), and [your checklist](YOUR_NEXT_STEPS.md). The next milestone is **Phase 3 — freeze the comparison protocol**.
-
-**Root policy:** all subsequent project work and outputs stay under `C:\Users\kanaa\OneDrive\Desktop\irs`. The previous Documents workspace is retained only as a recovery copy.
+[Milestone tracker](MILESTONE_TRACKER.md) records formal progress. [Your next steps](YOUR_NEXT_STEPS.md) explains what to demonstrate and review. The original pilot and new reproduction results have distinct provenance, so rerun timing measurements should not be mixed into the original tables.

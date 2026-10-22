@@ -1,0 +1,128 @@
+{
+  "description": "Primary sources checked for the final report. Paraphrases identify relevance and limits; literature scores are not mixed with local measurements.",
+  "records": [
+    {
+      "id": "R1",
+      "title": "ChestX-ray8: Hospital-scale Chest X-ray Database and Benchmarks on Weakly-Supervised Classification and Localization of Common Thorax Diseases",
+      "authors": [
+        "Wang, Xiaosong",
+        "Peng, Yifan",
+        "Lu, Le",
+        "Lu, Zhiyong",
+        "Bagheri, Mohammadhadi",
+        "Summers, Ronald M."
+      ],
+      "date": "2017/05/05",
+      "doi": "10.1109/CVPR.2017.369",
+      "url": "https://arxiv.org/abs/1705.02315",
+      "verified_date": "2026-10-22",
+      "description": "The original release describes report-derived labels for eight findings and 108,948 frontal images. Later ChestX-ray14 updates must be distinguished from that original release. Our pediatric binary dataset is different."
+    },
+    {
+      "id": "R2",
+      "title": "CheXNet: Radiologist-Level Pneumonia Detection on Chest X-Rays with Deep Learning",
+      "authors": [
+        "Rajpurkar, Pranav",
+        "Irvin, Jeremy",
+        "Zhu, Kaylie",
+        "Yang, Brandon",
+        "Mehta, Hershel",
+        "Duan, Tony",
+        "Ding, Daisy",
+        "Bagul, Aarti",
+        "Langlotz, Curtis",
+        "Shpanskaya, Katie",
+        "Lungren, Matthew P.",
+        "Ng, Andrew Y."
+      ],
+      "date": "2017/11/14",
+      "doi": null,
+      "url": "https://arxiv.org/abs/1711.05225",
+      "verified_date": "2026-10-22",
+      "description": "The reported radiologist comparison concerns pneumonia F1 on a specific test and annotation setup. It motivates a DenseNet baseline but does not establish universal clinical superiority or validate our models."
+    },
+    {
+      "id": "R3",
+      "title": "CheXpert: A Large Chest Radiograph Dataset with Uncertainty Labels and Expert Comparison",
+      "authors": [
+        "Irvin, Jeremy",
+        "Rajpurkar, Pranav",
+        "Ko, Michael",
+        "Yu, Yifan",
+        "Ciurea-Ilcus, Silviana",
+        "Chute, Chris",
+        "Marklund, Henrik",
+        "Haghgoo, Behzad",
+        "Ball, Robyn",
+        "Shpanskaya, Katie",
+        "Seekins, Jayne",
+        "Mong, David A.",
+        "Halabi, Safwan S.",
+        "Sandberg, Jesse K.",
+        "Jones, Ricky",
+        "Larson, David B.",
+        "Langlotz, Curtis P.",
+        "Patel, Bhavik N.",
+        "Lungren, Matthew P.",
+        "Ng, Andrew Y."
+      ],
+      "date": "2019/01/21",
+      "doi": null,
+      "url": "https://arxiv.org/abs/1901.07031",
+      "verified_date": "2026-10-22",
+      "description": "CheXpert provides report-derived observation labels with uncertainty and a focused expert comparison. We do not use that dataset or claim to reproduce its multi-finding evaluation."
+    },
+    {
+      "id": "R4",
+      "title": "Comparing different deep learning architectures for classification of chest radiographs",
+      "authors": [
+        "Bressem, Keno K.",
+        "Adams, Lisa C.",
+        "Erxleben, Christoph",
+        "Hamm, Bernd",
+        "Niehues, Stefan M.",
+        "Vahldiek, Janis L."
+      ],
+      "date": "2020-08-12",
+      "doi": "10.1038/s41598-020-70479-z",
+      "url": "https://www.nature.com/articles/s41598-020-70479-z",
+      "verified_date": "2026-10-22",
+      "description": "The authors compared sixteen architectures on CheXpert and a separate COVID-19 collection. Comparable shallower models motivate measuring resource costs; their dataset-specific scores are not our results."
+    },
+    {
+      "id": "R5",
+      "title": "CheXtransfer: Performance and Parameter Efficiency of ImageNet Models for Chest X-Ray Interpretation",
+      "authors": [
+        "Ke, Alexander",
+        "Ellsworth, William",
+        "Banerjee, Oishi",
+        "Ng, Andrew Y.",
+        "Rajpurkar, Pranav"
+      ],
+      "date": "2021/01/18",
+      "doi": "10.1145/3450439.3451867",
+      "url": "https://arxiv.org/abs/2101.06871",
+      "verified_date": "2026-10-22",
+      "description": "The study evaluates transfer and truncation on CheXpert, reporting an average parameter-efficiency improvement without a statistically significant drop in its comparison. That does not prove equivalence; our fine-tuning control does not reproduce truncation."
+    },
+    {
+      "id": "R6",
+      "title": "MedMNIST v2 - A large-scale lightweight benchmark for 2D and 3D biomedical image classification",
+      "authors": [
+        "Yang, Jiancheng",
+        "Shi, Rui",
+        "Wei, Donglai",
+        "Liu, Zequan",
+        "Zhao, Lin",
+        "Ke, Bilian",
+        "Pfister, Hanspeter",
+        "Ni, Bingbing"
+      ],
+      "date": "2023-01-19",
+      "doi": "10.1038/s41597-022-01721-8",
+      "url": "https://www.nature.com/articles/s41597-022-01721-8",
+      "verified_date": "2026-10-22",
+      "description": "The 2023 paper describes the standardized MedMNIST v2 collection at 28-pixel resolution. Our actual 224-pixel MedMNIST+ file is identified separately by its release record and checksum, rather than being an upscaled copy of the paper's 28-pixel images."
+    }
+  ]
+}

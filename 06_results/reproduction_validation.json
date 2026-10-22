@@ -1,0 +1,136 @@
+{
+  "status": "PASS",
+  "fresh_training_runs": 12,
+  "checkpoint_bytes_and_prediction_arrays": [
+    {
+      "run_id": "resnet18_frozen_seed42",
+      "checkpoint_bytes_identical_to_pilot": true,
+      "prediction_arrays_identical_to_pilot": {
+        "indices": true,
+        "labels": true,
+        "probabilities": true,
+        "fp32_probabilities": true
+      }
+    },
+    {
+      "run_id": "resnet18_partial_seed42",
+      "checkpoint_bytes_identical_to_pilot": true,
+      "prediction_arrays_identical_to_pilot": {
+        "indices": true,
+        "labels": true,
+        "probabilities": true,
+        "fp32_probabilities": true
+      }
+    },
+    {
+      "run_id": "densenet121_partial_seed42",
+      "checkpoint_bytes_identical_to_pilot": true,
+      "prediction_arrays_identical_to_pilot": {
+        "indices": true,
+        "labels": true,
+        "probabilities": true,
+        "fp32_probabilities": true
+      }
+    },
+    {
+      "run_id": "mobilenet_v3_small_partial_seed42",
+      "checkpoint_bytes_identical_to_pilot": true,
+      "prediction_arrays_identical_to_pilot": {
+        "indices": true,
+        "labels": true,
+        "probabilities": true,
+        "fp32_probabilities": true
+      }
+    },
+    {
+      "run_id": "resnet18_frozen_seed43",
+      "checkpoint_bytes_identical_to_pilot": true,
+      "prediction_arrays_identical_to_pilot": {
+        "indices": true,
+        "labels": true,
+        "probabilities": true,
+        "fp32_probabilities": true
+      }
+    },
+    {
+      "run_id": "resnet18_partial_seed43",
+      "checkpoint_bytes_identical_to_pilot": true,
+      "prediction_arrays_identical_to_pilot": {
+        "indices": true,
+        "labels": true,
+        "probabilities": true,
+        "fp32_probabilities": true
+      }
+    },
+    {
+      "run_id": "densenet121_partial_seed43",
+      "checkpoint_bytes_identical_to_pilot": true,
+      "prediction_arrays_identical_to_pilot": {
+        "indices": true,
+        "labels": true,
+        "probabilities": true,
+        "fp32_probabilities": true
+      }
+    },
+    {
+      "run_id": "mobilenet_v3_small_partial_seed43",
+      "checkpoint_bytes_identical_to_pilot": true,
+      "prediction_arrays_identical_to_pilot": {
+        "indices": true,
+        "labels": true,
+        "probabilities": true,
+        "fp32_probabilities": true
+      }
+    },
+    {
+      "run_id": "resnet18_frozen_seed44",
+      "checkpoint_bytes_identical_to_pilot": true,
+      "prediction_arrays_identical_to_pilot": {
+        "indices": true,
+        "labels": true,
+        "probabilities": true,
+        "fp32_probabilities": true
+      }
+    },
+    {
+      "run_id": "resnet18_partial_seed44",
+      "checkpoint_bytes_identical_to_pilot": true,
+      "prediction_arrays_identical_to_pilot": {
+        "indices": true,
+        "labels": true,
+        "probabilities": true,
+        "fp32_probabilities": true
+      }
+    },
+    {
+      "run_id": "densenet121_partial_seed44",
+      "checkpoint_bytes_identical_to_pilot": true,
+      "prediction_arrays_identical_to_pilot": {
+        "indices": true,
+        "labels": true,
+        "probabilities": true,
+        "fp32_probabilities": true
+      }
+    },
+    {
+      "run_id": "mobilenet_v3_small_partial_seed44",
+      "checkpoint_bytes_identical_to_pilot": true,
+      "prediction_arrays_identical_to_pilot": {
+        "indices": true,
+        "labels": true,
+        "probabilities": true,
+        "fp32_probabilities": true
+      }
+    }
+  ],
+  "predictive_summaries_and_paired_intervals_identical": true,
+  "all_2000_bootstrap_draws_identical": true,
+  "export_hashes_figure_links_and_descriptions_checked": true,
+  "frozen_files_unchanged": 18,
+  "active_sources_match_execution_provenance": [
+    "reproduced_v1",
+    "retrained_v1"
+  ],
+  "validator_sha256": "661e983d8464f7cb08791e9321e176c42e18d3a9d623624dfc523a01d2e2b117",
+  "description": "In the tested Windows/CUDA environment, full retraining reproduced all twelve original checkpoint files and all saved test-prediction arrays exactly. Saved-evidence and fresh analyses reproduced every bootstrap draw, predictive summary and paired interval. Hardware timings were remeasured and are not equality targets."
+}

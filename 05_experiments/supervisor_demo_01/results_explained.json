@@ -1,0 +1,1862 @@
+{
+  "schema_version": 1,
+  "protocol_id": "cxr_compare_v1",
+  "description": "Reproducible educational comparison of three pretrained CNNs for pediatric pneumonia classification. All descriptions below are generated from the stored numerical evidence. Raw predictions, checkpoints, executable Python and CSV tables accompany this JSON.",
+  "provenance": {
+    "created_utc": "2026-10-22T16:51:49.976647+00:00",
+    "protocol_id": "cxr_compare_v1",
+    "mode": "saved_evidence_analysis_reproduction",
+    "new_training": false,
+    "source_evidence": "C:\\Users\\kanaa\\OneDrive\\Desktop\\irs\\archive\\pilot_2026-10-22",
+    "test_previously_examined": true,
+    "source_files": {
+      "04_implementation\\src\\analyze.py": "53e6163b3afddf6ce01fa1606ab7406f17bd0c8c7abc97a2ac9676dbd10eb04d",
+      "04_implementation\\src\\experiment.py": "faa8f8898731211fbbc0946a44593d49fdc791fe44b3b1683f4b2b33dfe84d20",
+      "04_implementation\\src\\explained_results.py": "8917b66203b76a3fac638a1cc8d0e753ea5072489686ad21d1b8a273a902a512",
+      "04_implementation\\src\\hardware_probe.py": "b7bb5d517c19a60ac46694257e8095e1d4485c8896c7516f9a83af9c23865216",
+      "04_implementation\\src\\pipeline.py": "4fa61d7c0c43e0f1717836f79c4e34df8630c8729340b8abd34d8ce4b11b7e1c",
+      "04_implementation\\src\\runtime.py": "95e35eef9d1da36cea7df346f8e6e647ccf99ae8fc127340b6dee70b1a2564b7",
+      "04_implementation\\src\\settings.py": "3d4c299260021602fa402abefaa1a8f5fb774c866780021762f2a60ba35d2dc1",
+      "04_implementation\\src\\validate_reproduction.py": "661e983d8464f7cb08791e9321e176c42e18d3a9d623624dfc523a01d2e2b117"
+    },
+    "analysis_execution": {
+      "created_utc": "2026-10-22T16:52:10.231547+00:00",
+      "description": "Current analysis/export source hashes. Original launch-time hashes remain in source_files. Session-specific timing interpretation is generated without changing training or saved predictions.",
+      "source_files": {
+        "04_implementation\\src\\analyze.py": "53e6163b3afddf6ce01fa1606ab7406f17bd0c8c7abc97a2ac9676dbd10eb04d",
+        "04_implementation\\src\\experiment.py": "faa8f8898731211fbbc0946a44593d49fdc791fe44b3b1683f4b2b33dfe84d20",
+        "04_implementation\\src\\explained_results.py": "8917b66203b76a3fac638a1cc8d0e753ea5072489686ad21d1b8a273a902a512",
+        "04_implementation\\src\\hardware_probe.py": "b7bb5d517c19a60ac46694257e8095e1d4485c8896c7516f9a83af9c23865216",
+        "04_implementation\\src\\pipeline.py": "4fa61d7c0c43e0f1717836f79c4e34df8630c8729340b8abd34d8ce4b11b7e1c",
+        "04_implementation\\src\\runtime.py": "95e35eef9d1da36cea7df346f8e6e647ccf99ae8fc127340b6dee70b1a2564b7",
+        "04_implementation\\src\\settings.py": "3d4c299260021602fa402abefaa1a8f5fb774c866780021762f2a60ba35d2dc1",
+        "04_implementation\\src\\validate_reproduction.py": "661e983d8464f7cb08791e9321e176c42e18d3a9d623624dfc523a01d2e2b117"
+      }
+    }
+  },
+  "pipeline": [
+    {
+      "stage": "audit",
+      "description": "Check official dataset checksum and exact image duplicates; retain 4698/524/624 examples."
+    },
+    {
+      "stage": "train",
+      "description": "For each of three seeds, train each head for 2 epochs and partially fine-tune for 3; paired ResNet frozen control shares epoch-2 weights. Batch 16, AMP, fixed BN statistics."
+    },
+    {
+      "stage": "evaluate",
+      "description": "Execute final checkpoints on the same test order in AMP and FP32; fixed threshold 0.5; save raw arrays."
+    },
+    {
+      "stage": "statistics",
+      "description": "Recompute per-run scores, sample SD and paired hierarchical bootstrap from saved predictions; never tune on test scores."
+    },
+    {
+      "stage": "hardware",
+      "description": "Time isolated forward calls and synthetic full-gradient steps with explicit warm-ups, synchronization and raw samples."
+    },
+    {
+      "stage": "export",
+      "description": "Write explanations with numerical results in this JSON, plus CSV, Markdown and PNG figures."
+    }
+  ],
+  "metric_definitions": {
+    "auroc": "Area under ROC: ranking of pneumonia above normal across thresholds; higher is better; chance is 0.5.",
+    "ap": "Average precision: stepwise precision-recall summary, not trapezoidal PR area; test prevalence baseline is 0.625.",
+    "f1": "Harmonic mean of pneumonia precision and recall at probability >= 0.5.",
+    "precision": "TP/(TP+FP): proportion of predicted pneumonia examples labeled pneumonia.",
+    "recall": "TP/(TP+FN): pneumonia sensitivity.",
+    "specificity": "TN/(TN+FP): normal-example sensitivity.",
+    "accuracy": "(TP+TN)/N: fraction correct; majority-label reference is 0.625.",
+    "balanced_accuracy": "Mean of sensitivity and specificity.",
+    "sd": "Sample standard deviation across three training seeds (ddof=1); not standard error or patient uncertainty.",
+    "auroc_ci95": "Exploratory percentile interval: 2000 paired seed-and-exact-image-cluster bootstrap draws.",
+    "speedup": "FP32 time divided by AMP time; below 1 means AMP was slower.",
+    "peak_allocated_mib": "Peak live tensor allocation in MiB; excludes unused reserved memory and driver/desktop allocations."
+  },
+  "settings": {
+    "dataset": "PneumoniaMNIST+ 224",
+    "dataset_url": "https://zenodo.org/records/10519652/files/pneumoniamnist_224.npz?download=1",
+    "dataset_md5": "d6a3c71de1b945ea11211b03746c1fe1",
+    "architectures": [
+      "resnet18",
+      "densenet121",
+      "mobilenet_v3_small"
+    ],
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "batch_size": 16,
+    "head_epochs": 2,
+    "adaptation_epochs": 3,
+    "head_lr": 0.001,
+    "adaptation_lr": 0.0001,
+    "weight_decay": 0.0001,
+    "rotation_degrees": 5,
+    "fixed_threshold": 0.5,
+    "precision": "CUDA autocast float16 with GradScaler",
+    "batchnorm": "running statistics frozen in all phases",
+    "checkpoint_selection": "fixed final epoch, no test selection",
+    "optimization": "paired ResNet frozen vs partial fine-tuning; FP32 vs AMP inference",
+    "bootstrap_repetitions": 2000
+  },
+  "verification": {
+    "status": "PASS",
+    "runs_verified": 12,
+    "frozen_files_verified": 18,
+    "dataset_sha256": "2a6faaca43872b4bcf4154a79625631ab29683b41e265ab7936d0513351fe591",
+    "accepted_split_counts": {
+      "train": 4698,
+      "val": 524,
+      "test": 624
+    },
+    "independent_rank_auroc": true,
+    "all_predictive_metrics_recomputed": true,
+    "test_labels_and_order_verified": true,
+    "runs": [
+      {
+        "run_id": "resnet18_frozen_seed42",
+        "checkpoint_sha256": "a3cdc1783f7fddcd11530fd0c10abd859d0ce70ffd26c60b194f6e274de5bc1c",
+        "status": "PASS"
+      },
+      {
+        "run_id": "resnet18_partial_seed42",
+        "checkpoint_sha256": "3aa0805cd091c7111d99f6482ec742e885f2cff83062202dcc935463a4f5f9b5",
+        "status": "PASS"
+      },
+      {
+        "run_id": "densenet121_partial_seed42",
+        "checkpoint_sha256": "e64dc1ed1d33f352d06a83d0703876a3b2b3dd7dcfac3058c9a193b728332c05",
+        "status": "PASS"
+      },
+      {
+        "run_id": "mobilenet_v3_small_partial_seed42",
+        "checkpoint_sha256": "666c0dba5339c9e055496b76faa753b3cb34f55eb0e85ed9040fbfc03ebac27b",
+        "status": "PASS"
+      },
+      {
+        "run_id": "resnet18_frozen_seed43",
+        "checkpoint_sha256": "07c9f78514139135fa2ba8c64c6fb92f96dd09cf1a0fac525ba060e80d7e17e1",
+        "status": "PASS"
+      },
+      {
+        "run_id": "resnet18_partial_seed43",
+        "checkpoint_sha256": "1d1d26689c21b82df80e99b2e51855fd3dd3e82c0e8ad5a812ca8529da4c20d6",
+        "status": "PASS"
+      },
+      {
+        "run_id": "densenet121_partial_seed43",
+        "checkpoint_sha256": "e4c8c83e1b7a3f26e96f5314ef99138eead5beac0354d7f082d56cd6c9797d11",
+        "status": "PASS"
+      },
+      {
+        "run_id": "mobilenet_v3_small_partial_seed43",
+        "checkpoint_sha256": "b2da33e20dee50a3fbefde1317ced58a264f09f6ce456ded065a9e37eac2c31b",
+        "status": "PASS"
+      },
+      {
+        "run_id": "resnet18_frozen_seed44",
+        "checkpoint_sha256": "b195a287eec5eb5d6225961cb856faaf3085b9773fdce0d0b4f21a834895c59a",
+        "status": "PASS"
+      },
+      {
+        "run_id": "resnet18_partial_seed44",
+        "checkpoint_sha256": "356be21475a01cc63371ef22c072f9525b44c415568b809545534e2e4d4a232b",
+        "status": "PASS"
+      },
+      {
+        "run_id": "densenet121_partial_seed44",
+        "checkpoint_sha256": "e33b97cd2b9bf418efc16e45c29e2b722c6c191d5169479b897f56da1e60c87c",
+        "status": "PASS"
+      },
+      {
+        "run_id": "mobilenet_v3_small_partial_seed44",
+        "checkpoint_sha256": "7653a5476faf10aa8ba50dbbe3d2bee477a7383e44ca19a66d18d85c8e1cb5e5",
+        "status": "PASS"
+      }
+    ],
+    "description": "All twelve checkpoint hashes, five-epoch histories, accepted splits and raw prediction-derived scores passed. This checks artifact consistency; checkpoint inference is checked separately by replay."
+  },
+  "checkpoint_replay": {
+    "status": "PASS",
+    "absolute_tolerance": 1e-06,
+    "runs": [
+      {
+        "run_id": "resnet18_frozen_seed42",
+        "status": "PASS",
+        "probabilities_max_absolute_replay_difference": 0.0,
+        "fp32_probabilities_max_absolute_replay_difference": 0.0
+      },
+      {
+        "run_id": "resnet18_partial_seed42",
+        "status": "PASS",
+        "probabilities_max_absolute_replay_difference": 0.0,
+        "fp32_probabilities_max_absolute_replay_difference": 0.0
+      },
+      {
+        "run_id": "densenet121_partial_seed42",
+        "status": "PASS",
+        "probabilities_max_absolute_replay_difference": 0.0,
+        "fp32_probabilities_max_absolute_replay_difference": 0.0
+      },
+      {
+        "run_id": "mobilenet_v3_small_partial_seed42",
+        "status": "PASS",
+        "probabilities_max_absolute_replay_difference": 0.0,
+        "fp32_probabilities_max_absolute_replay_difference": 0.0
+      },
+      {
+        "run_id": "resnet18_frozen_seed43",
+        "status": "PASS",
+        "probabilities_max_absolute_replay_difference": 0.0,
+        "fp32_probabilities_max_absolute_replay_difference": 0.0
+      },
+      {
+        "run_id": "resnet18_partial_seed43",
+        "status": "PASS",
+        "probabilities_max_absolute_replay_difference": 0.0,
+        "fp32_probabilities_max_absolute_replay_difference": 0.0
+      },
+      {
+        "run_id": "densenet121_partial_seed43",
+        "status": "PASS",
+        "probabilities_max_absolute_replay_difference": 0.0,
+        "fp32_probabilities_max_absolute_replay_difference": 0.0
+      },
+      {
+        "run_id": "mobilenet_v3_small_partial_seed43",
+        "status": "PASS",
+        "probabilities_max_absolute_replay_difference": 0.0,
+        "fp32_probabilities_max_absolute_replay_difference": 0.0
+      },
+      {
+        "run_id": "resnet18_frozen_seed44",
+        "status": "PASS",
+        "probabilities_max_absolute_replay_difference": 0.0,
+        "fp32_probabilities_max_absolute_replay_difference": 0.0
+      },
+      {
+        "run_id": "resnet18_partial_seed44",
+        "status": "PASS",
+        "probabilities_max_absolute_replay_difference": 0.0,
+        "fp32_probabilities_max_absolute_replay_difference": 0.0
+      },
+      {
+        "run_id": "densenet121_partial_seed44",
+        "status": "PASS",
+        "probabilities_max_absolute_replay_difference": 0.0,
+        "fp32_probabilities_max_absolute_replay_difference": 0.0
+      },
+      {
+        "run_id": "mobilenet_v3_small_partial_seed44",
+        "status": "PASS",
+        "probabilities_max_absolute_replay_difference": 0.0,
+        "fp32_probabilities_max_absolute_replay_difference": 0.0
+      }
+    ],
+    "description": "All twelve models were strictly loaded and executed on all 624 real test images in AMP and FP32. These numbers compare replay against the same precision, not AMP against FP32."
+  },
+  "dataset": {
+    "accepted_counts": {
+      "train": 4698,
+      "val": 524,
+      "test": 624
+    },
+    "test_class_counts": {
+      "normal": 234,
+      "pneumonia": 390
+    },
+    "description": "PneumoniaMNIST+ actual 224 resolution; pediatric normal/pneumonia. Ten exact train/validation-overlap rows removed. Within-test duplicate images retained and grouped for bootstrap. No patient IDs; exact hash checks cannot prove patient independence."
+  },
+  "comparison": [
+    {
+      "group": "resnet18_frozen",
+      "label": "ResNet-18 frozen",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "auroc_ci95": [
+        0.9560588157461318,
+        0.9806434567601096
+      ],
+      "auroc_mean": 0.9694955803930164,
+      "auroc_sd": 0.0008765192345310293,
+      "ap_mean": 0.9795726823045184,
+      "ap_sd": 0.0008857098213644283,
+      "f1_mean": 0.9130901766882525,
+      "f1_sd": 0.0029024489356255,
+      "precision_mean": 0.8558118087323625,
+      "precision_sd": 0.0073323564920853915,
+      "recall_mean": 0.9786324786324786,
+      "recall_sd": 0.0029607706112288394,
+      "specificity_mean": 0.7250712250712251,
+      "specificity_sd": 0.017271161898834965,
+      "accuracy_mean": 0.8835470085470085,
+      "accuracy_sd": 0.004626204080045062,
+      "balanced_accuracy_mean": 0.851851851851852,
+      "balanced_accuracy_sd": 0.007155195643803093,
+      "parameters": 11177025,
+      "weights_mib": 42.71039867401123,
+      "training_minutes_mean": 0.24093848666654796,
+      "training_peak_mib": 640.07958984375,
+      "partial_trainable_parameters": 513,
+      "description": "ResNet-18 frozen had mean test AUROC 0.969496 with seed SD 0.000877; F1 at 0.5 was 0.913090. These are means of three separate model scores, not an ensemble. This descriptive result does not establish superiority over another architecture.",
+      "evidence_runs": [
+        "resnet18_frozen_seed42",
+        "resnet18_frozen_seed43",
+        "resnet18_frozen_seed44"
+      ]
+    },
+    {
+      "group": "resnet18_partial",
+      "label": "ResNet-18 partial FT",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "auroc_ci95": [
+        0.9814291512190013,
+        0.9950373964513181
+      ],
+      "auroc_mean": 0.9889126305792972,
+      "auroc_sd": 0.0021046659891005943,
+      "ap_mean": 0.9921441496330844,
+      "ap_sd": 0.0019496466918593578,
+      "f1_mean": 0.9335178954122081,
+      "f1_sd": 0.028641604559615414,
+      "precision_mean": 0.886008239490844,
+      "precision_sd": 0.06267581341181323,
+      "recall_mean": 0.9888888888888889,
+      "recall_sd": 0.014803853056144262,
+      "specificity_mean": 0.7806267806267807,
+      "specificity_sd": 0.13284573711719955,
+      "accuracy_mean": 0.9107905982905983,
+      "accuracy_sd": 0.04167693824741348,
+      "balanced_accuracy_mean": 0.8847578347578348,
+      "balanced_accuracy_sd": 0.059841777240156616,
+      "parameters": 11177025,
+      "weights_mib": 42.71052074432373,
+      "training_minutes_mean": 0.3466523133332278,
+      "training_peak_mib": 736.13818359375,
+      "partial_trainable_parameters": 8394241,
+      "description": "ResNet-18 partial FT had mean test AUROC 0.988913 with seed SD 0.002105; F1 at 0.5 was 0.933518. These are means of three separate model scores, not an ensemble. This descriptive result does not establish superiority over another architecture.",
+      "evidence_runs": [
+        "resnet18_partial_seed42",
+        "resnet18_partial_seed43",
+        "resnet18_partial_seed44"
+      ]
+    },
+    {
+      "group": "densenet121_partial",
+      "label": "DenseNet-121 partial FT",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "auroc_ci95": [
+        0.9754018113647904,
+        0.9931046915666356
+      ],
+      "auroc_mean": 0.9855157425670246,
+      "auroc_sd": 0.001183892661464371,
+      "ap_mean": 0.9894838743442621,
+      "ap_sd": 0.0018439629256215798,
+      "f1_mean": 0.9388365565293242,
+      "f1_sd": 0.011806342367948289,
+      "precision_mean": 0.8890447261127431,
+      "precision_sd": 0.024061952271732367,
+      "recall_mean": 0.9948717948717949,
+      "recall_sd": 0.00444115591684326,
+      "specificity_mean": 0.792022792022792,
+      "specificity_sd": 0.05134137119925952,
+      "accuracy_mean": 0.9188034188034188,
+      "accuracy_sd": 0.0169851635636588,
+      "balanced_accuracy_mean": 0.8934472934472936,
+      "balanced_accuracy_sd": 0.023833488247679082,
+      "parameters": 6954881,
+      "weights_mib": 27.08641815185547,
+      "training_minutes_mean": 1.0191992844443625,
+      "training_peak_mib": 717.12060546875,
+      "partial_trainable_parameters": 2161153,
+      "description": "DenseNet-121 partial FT had mean test AUROC 0.985516 with seed SD 0.001184; F1 at 0.5 was 0.938837. These are means of three separate model scores, not an ensemble. This descriptive result does not establish superiority over another architecture.",
+      "evidence_runs": [
+        "densenet121_partial_seed42",
+        "densenet121_partial_seed43",
+        "densenet121_partial_seed44"
+      ]
+    },
+    {
+      "group": "mobilenet_v3_small_partial",
+      "label": "MobileNetV3-Small partial FT",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "auroc_ci95": [
+        0.9726806038683826,
+        0.9900588266841247
+      ],
+      "auroc_mean": 0.9822466944261817,
+      "auroc_sd": 0.0007560881422539325,
+      "ap_mean": 0.9882916552305199,
+      "ap_sd": 0.0003540239542356807,
+      "f1_mean": 0.9428916690483926,
+      "f1_sd": 0.009410365368447119,
+      "precision_mean": 0.9032971441763987,
+      "precision_sd": 0.019559400842241788,
+      "recall_mean": 0.9863247863247864,
+      "recall_sd": 0.0029607706112288394,
+      "specificity_mean": 0.8233618233618234,
+      "specificity_sd": 0.04039158654916757,
+      "accuracy_mean": 0.9252136752136751,
+      "accuracy_sd": 0.01334401281709061,
+      "balanced_accuracy_mean": 0.9048433048433049,
+      "balanced_accuracy_sd": 0.018751547204449444,
+      "parameters": 1518881,
+      "weights_mib": 5.916010856628418,
+      "training_minutes_mean": 0.3534568222223445,
+      "training_peak_mib": 461.99267578125,
+      "partial_trainable_parameters": 942417,
+      "description": "MobileNetV3-Small partial FT had mean test AUROC 0.982247 with seed SD 0.000756; F1 at 0.5 was 0.942892. These are means of three separate model scores, not an ensemble. This descriptive result does not establish superiority over another architecture.",
+      "evidence_runs": [
+        "mobilenet_v3_small_partial_seed42",
+        "mobilenet_v3_small_partial_seed43",
+        "mobilenet_v3_small_partial_seed44"
+      ]
+    }
+  ],
+  "paired_differences": [
+    {
+      "comparison": "ResNet-18 partial FT minus ResNet-18 frozen",
+      "delta_auroc_mean": 0.019417050186280815,
+      "ci95": [
+        0.01125598940472764,
+        0.029072018145645587
+      ],
+      "seed_deltas": [
+        0.016798159105851473,
+        0.020885382423843968,
+        0.02056760902914756
+      ],
+      "description": "Mean AUROC difference +0.019417; exploratory 95% interval [+0.011256, +0.029072] supports a positive within-benchmark difference. Three seeds and unknown patient dependence limit this inference; no multiplicity adjustment was applied."
+    },
+    {
+      "comparison": "ResNet-18 partial FT minus DenseNet-121 partial FT",
+      "delta_auroc_mean": 0.0033968880122726697,
+      "ci95": [
+        -0.0022669634734020783,
+        0.009939652231827653
+      ],
+      "seed_deltas": [
+        0.0013258820951128625,
+        0.0065581854043392784,
+        0.002306596537365757
+      ],
+      "description": "Mean AUROC difference +0.003397; exploratory 95% interval [-0.002267, +0.009940] includes zero, so a reliable directional difference is not established. Three seeds and unknown patient dependence limit this inference; no multiplicity adjustment was applied."
+    },
+    {
+      "comparison": "MobileNetV3-Small partial FT minus DenseNet-121 partial FT",
+      "delta_auroc_mean": -0.003269048140842834,
+      "ci95": [
+        -0.008991039624950552,
+        0.002069227782122836
+      ],
+      "seed_deltas": [
+        -0.0038078018847249595,
+        -0.002333990795529317,
+        -0.0036653517422748916
+      ],
+      "description": "Mean AUROC difference -0.003269; exploratory 95% interval [-0.008991, +0.002069] includes zero, so a reliable directional difference is not established. Three seeds and unknown patient dependence limit this inference; no multiplicity adjustment was applied."
+    }
+  ],
+  "statistics_method": {
+    "repetitions": 2000,
+    "test_exact_image_clusters": 621,
+    "seed": 20261022,
+    "method": "paired training-seed and exact-image-cluster percentile bootstrap; no patient IDs"
+  },
+  "optimization_and_hardware": [
+    {
+      "architecture": "resnet18",
+      "batch_1_inference": {
+        "fp32": {
+          "median_ms": 1.4888960123062134,
+          "p95_ms": 2.004480004310608,
+          "round_medians_ms": [
+            1.4914560317993164,
+            1.4888960123062134,
+            1.4878720045089722
+          ],
+          "peak_mib": 103.11669921875
+        },
+        "amp": {
+          "median_ms": 2.4392160177230835,
+          "p95_ms": 4.401935887336729,
+          "round_medians_ms": [
+            2.48524808883667,
+            2.382192015647888,
+            2.4392160177230835
+          ],
+          "peak_mib": 103.3984375
+        },
+        "speedup_median": 0.6099795974191105,
+        "speedup_round_range": [
+          0.600123600737767,
+          0.6250109153779848
+        ],
+        "best_probed_amp_batch": 32,
+        "best_probed_amp_images_per_second": 2713.0477246962623,
+        "best_probed_peak_mib": 215.64453125,
+        "largest_successfully_probed_batch": 128
+      },
+      "synthetic_full_gradient_training": [
+        {
+          "architecture": "resnet18",
+          "batch_size": 16,
+          "amp": false,
+          "scope": "synthetic full-gradient AdamW step, fixed BN stats, no preprocessing/transfer",
+          "median_step_ms": 51.87510000541806,
+          "images_per_second": 308.4331403376358,
+          "peak_allocated_mib": 575.6787109375,
+          "warmup_steps": 3,
+          "measured_steps": 10,
+          "times_seconds": [
+            0.05148700000427198,
+            0.051836200000252575,
+            0.05178120000346098,
+            0.05174500000430271,
+            0.05197649999172427,
+            0.05178760000853799,
+            0.051949700005934574,
+            0.05205680000653956,
+            0.05191400001058355,
+            0.05207960000552703
+          ]
+        },
+        {
+          "architecture": "resnet18",
+          "batch_size": 16,
+          "amp": true,
+          "scope": "synthetic full-gradient AdamW step, fixed BN stats, no preprocessing/transfer",
+          "median_step_ms": 25.46730000176467,
+          "images_per_second": 628.2566270822323,
+          "peak_allocated_mib": 430.66943359375,
+          "warmup_steps": 3,
+          "measured_steps": 10,
+          "times_seconds": [
+            0.025519000002532266,
+            0.025438700002268888,
+            0.025461500001256354,
+            0.025399700010893866,
+            0.025648499999078922,
+            0.025650399998994544,
+            0.02545030000328552,
+            0.025473100002272986,
+            0.02540640000370331,
+            0.025482800003373995
+          ]
+        },
+        {
+          "architecture": "resnet18",
+          "batch_size": 32,
+          "amp": true,
+          "scope": "synthetic full-gradient AdamW step, fixed BN stats, no preprocessing/transfer",
+          "median_step_ms": 43.83754999435041,
+          "images_per_second": 729.9678016705774,
+          "peak_allocated_mib": 619.47802734375,
+          "warmup_steps": 3,
+          "measured_steps": 10,
+          "times_seconds": [
+            0.043992499995511025,
+            0.04367800000181887,
+            0.04409890000533778,
+            0.04372780000267085,
+            0.04360990000714082,
+            0.043737600004533306,
+            0.04393080000590999,
+            0.0438261999952374,
+            0.04384889999346342,
+            0.0438916999992216
+          ]
+        },
+        {
+          "architecture": "resnet18",
+          "batch_size": 64,
+          "amp": true,
+          "scope": "synthetic full-gradient AdamW step, fixed BN stats, no preprocessing/transfer",
+          "median_step_ms": 85.32394999929238,
+          "images_per_second": 750.0824797788988,
+          "peak_allocated_mib": 1001.21630859375,
+          "warmup_steps": 3,
+          "measured_steps": 10,
+          "times_seconds": [
+            0.0852479999884963,
+            0.08518680000270251,
+            0.0851425000000745,
+            0.08523369999602437,
+            0.08523369999602437,
+            0.08551500001340173,
+            0.08555200000409968,
+            0.08539990001008846,
+            0.08556680000037886,
+            0.08545549999689683
+          ]
+        }
+      ],
+      "batch_16_training_amp_speedup": 2.03692970993484,
+      "batch_16_training_allocation_reduction_percent": 25.189272173640155,
+      "description": "Batch-1 AMP forward speedup was 0.610x (below 1 is slower). At synthetic full-gradient batch 16, AMP step speedup was 2.037x and allocated memory fell by 25.2%. Largest successful tested full-gradient batch: 64. Timing inputs had matching shapes but fresh random values per inference case. Full-gradient probes used disposable model copies and synthetic targets, not additional predictive training. These short device-specific probes measure feasible tested workloads, not a guaranteed training gain or absolute VRAM ceiling."
+    },
+    {
+      "architecture": "densenet121",
+      "batch_1_inference": {
+        "fp32": {
+          "median_ms": 10.22166395187378,
+          "p95_ms": 14.346753644943238,
+          "round_medians_ms": [
+            10.29742431640625,
+            10.095664024353027,
+            10.22166395187378
+          ],
+          "peak_mib": 70.09765625
+        },
+        "amp": {
+          "median_ms": 16.096735954284668,
+          "p95_ms": 21.928823375701903,
+          "round_medians_ms": [
+            17.489856719970703,
+            16.096735954284668,
+            15.101471900939941
+          ],
+          "peak_mib": 74.02587890625
+        },
+        "speedup_median": 0.6271870305274989,
+        "speedup_round_range": [
+          0.5887655045594621,
+          0.6768654088107507
+        ],
+        "best_probed_amp_batch": 16,
+        "best_probed_amp_images_per_second": 863.2581159739627,
+        "best_probed_peak_mib": 147.90869140625,
+        "largest_successfully_probed_batch": 128
+      },
+      "synthetic_full_gradient_training": [
+        {
+          "architecture": "densenet121",
+          "batch_size": 16,
+          "amp": false,
+          "scope": "synthetic full-gradient AdamW step, fixed BN stats, no preprocessing/transfer",
+          "median_step_ms": 143.360499991104,
+          "images_per_second": 111.60675361060301,
+          "peak_allocated_mib": 2161.86083984375,
+          "warmup_steps": 3,
+          "measured_steps": 10,
+          "times_seconds": [
+            0.14329979999456555,
+            0.1433544999890728,
+            0.14313019999826793,
+            0.14351280000119004,
+            0.14346500000101514,
+            0.14336649999313522,
+            0.143932599996333,
+            0.1431931999977678,
+            0.14310669999395031,
+            0.1449505000055069
+          ]
+        },
+        {
+          "architecture": "densenet121",
+          "batch_size": 16,
+          "amp": true,
+          "scope": "synthetic full-gradient AdamW step, fixed BN stats, no preprocessing/transfer",
+          "median_step_ms": 71.55975000205217,
+          "images_per_second": 223.58937810069426,
+          "peak_allocated_mib": 1201.81689453125,
+          "warmup_steps": 3,
+          "measured_steps": 10,
+          "times_seconds": [
+            0.07045490000746213,
+            0.07674459999543615,
+            0.07361940000555478,
+            0.06996919999073725,
+            0.07086789999448229,
+            0.07129420001001563,
+            0.07182529999408871,
+            0.07296799999312498,
+            0.07228279999981169,
+            0.06706380000105128
+          ]
+        },
+        {
+          "architecture": "densenet121",
+          "batch_size": 32,
+          "amp": true,
+          "scope": "synthetic full-gradient AdamW step, fixed BN stats, no preprocessing/transfer",
+          "median_step_ms": 134.06790000590263,
+          "images_per_second": 238.6850245181071,
+          "peak_allocated_mib": 2226.65087890625,
+          "warmup_steps": 3,
+          "measured_steps": 10,
+          "times_seconds": [
+            0.13398339999548625,
+            0.13400050000927877,
+            0.1338716000027489,
+            0.1341353000025265,
+            0.13374579999072012,
+            0.13433449999138247,
+            0.13341969999601133,
+            0.13609240000369027,
+            0.13858719999552704,
+            0.1343669000052614
+          ]
+        },
+        {
+          "architecture": "densenet121",
+          "batch_size": 64,
+          "amp": true,
+          "scope": "synthetic full-gradient AdamW step, fixed BN stats, no preprocessing/transfer",
+          "median_step_ms": 264.44754999829456,
+          "images_per_second": 242.01396458546407,
+          "peak_allocated_mib": 4273.63623046875,
+          "warmup_steps": 3,
+          "measured_steps": 10,
+          "times_seconds": [
+            0.2644698999938555,
+            0.2639837000024272,
+            0.26974459999473765,
+            0.2644252000027336,
+            0.26488610000524204,
+            0.264565900011803,
+            0.2643007000006037,
+            0.2642500000074506,
+            0.26468400000885595,
+            0.2639393999997992
+          ]
+        }
+      ],
+      "batch_16_training_amp_speedup": 2.0033678148259706,
+      "batch_16_training_allocation_reduction_percent": 44.408221270240865,
+      "description": "Batch-1 AMP forward speedup was 0.627x (below 1 is slower). At synthetic full-gradient batch 16, AMP step speedup was 2.003x and allocated memory fell by 44.4%. Largest successful tested full-gradient batch: 64. Timing inputs had matching shapes but fresh random values per inference case. Full-gradient probes used disposable model copies and synthetic targets, not additional predictive training. These short device-specific probes measure feasible tested workloads, not a guaranteed training gain or absolute VRAM ceiling."
+    },
+    {
+      "architecture": "mobilenet_v3_small",
+      "batch_1_inference": {
+        "fp32": {
+          "median_ms": 4.20145583152771,
+          "p95_ms": 7.292232012748718,
+          "round_medians_ms": [
+            4.20145583152771,
+            4.655632019042969,
+            4.190655946731567
+          ],
+          "peak_mib": 50.45458984375
+        },
+        "amp": {
+          "median_ms": 5.409791946411133,
+          "p95_ms": 8.874751567840573,
+          "round_medians_ms": [
+            5.409791946411133,
+            5.372431993484497,
+            5.527040004730225
+          ],
+          "peak_mib": 42.36474609375
+        },
+        "speedup_median": 0.7766390783872871,
+        "speedup_round_range": [
+          0.7582098090741273,
+          0.8665781204283574
+        ],
+        "best_probed_amp_batch": 128,
+        "best_probed_amp_images_per_second": 9762.918705972403,
+        "best_probed_peak_mib": 237.15576171875,
+        "largest_successfully_probed_batch": 128
+      },
+      "synthetic_full_gradient_training": [
+        {
+          "architecture": "mobilenet_v3_small",
+          "batch_size": 16,
+          "amp": false,
+          "scope": "synthetic full-gradient AdamW step, fixed BN stats, no preprocessing/transfer",
+          "median_step_ms": 21.435149996250402,
+          "images_per_second": 746.4375104815614,
+          "peak_allocated_mib": 343.291015625,
+          "warmup_steps": 3,
+          "measured_steps": 10,
+          "times_seconds": [
+            0.021711999987019226,
+            0.022417300002416596,
+            0.02271910000126809,
+            0.02186280000023544,
+            0.02115830000548158,
+            0.022051899999496527,
+            0.020992100005969405,
+            0.020985000010114163,
+            0.01995349999924656,
+            0.020678400003816932
+          ]
+        },
+        {
+          "architecture": "mobilenet_v3_small",
+          "batch_size": 16,
+          "amp": true,
+          "scope": "synthetic full-gradient AdamW step, fixed BN stats, no preprocessing/transfer",
+          "median_step_ms": 24.96419999806676,
+          "images_per_second": 640.917794331044,
+          "peak_allocated_mib": 223.64453125,
+          "warmup_steps": 3,
+          "measured_steps": 10,
+          "times_seconds": [
+            0.05371069999819156,
+            0.023306499992031604,
+            0.01954140000452753,
+            0.020842700003413484,
+            0.022339899995131418,
+            0.027129199996124953,
+            0.024220999999670312,
+            0.030271499999798834,
+            0.02570739999646321,
+            0.02920169998833444
+          ]
+        },
+        {
+          "architecture": "mobilenet_v3_small",
+          "batch_size": 32,
+          "amp": true,
+          "scope": "synthetic full-gradient AdamW step, fixed BN stats, no preprocessing/transfer",
+          "median_step_ms": 22.791150004195515,
+          "images_per_second": 1404.0537662254546,
+          "peak_allocated_mib": 362.4404296875,
+          "warmup_steps": 3,
+          "measured_steps": 10,
+          "times_seconds": [
+            0.021263700007693842,
+            0.020970199999283068,
+            0.02078550000442192,
+            0.023394999996526167,
+            0.024669400008860976,
+            0.02175080000597518,
+            0.02292420000594575,
+            0.024788300012005493,
+            0.026263299994752742,
+            0.02265810000244528
+          ]
+        },
+        {
+          "architecture": "mobilenet_v3_small",
+          "batch_size": 64,
+          "amp": true,
+          "scope": "synthetic full-gradient AdamW step, fixed BN stats, no preprocessing/transfer",
+          "median_step_ms": 32.159850001335144,
+          "images_per_second": 1990.0590331529215,
+          "peak_allocated_mib": 628.86376953125,
+          "warmup_steps": 3,
+          "measured_steps": 10,
+          "times_seconds": [
+            0.07238599999982398,
+            0.07307420000142884,
+            0.03501300000061747,
+            0.0329628000035882,
+            0.03181770000082906,
+            0.03186760000244249,
+            0.0324521000002278,
+            0.02995779999764636,
+            0.03129449998959899,
+            0.03180620000057388
+          ]
+        }
+      ],
+      "batch_16_training_amp_speedup": 0.8586355660469933,
+      "batch_16_training_allocation_reduction_percent": 34.8527863909197,
+      "description": "Batch-1 AMP forward speedup was 0.777x (below 1 is slower). At synthetic full-gradient batch 16, AMP step speedup was 0.859x and allocated memory fell by 34.9%. Largest successful tested full-gradient batch: 64. Timing inputs had matching shapes but fresh random values per inference case. Full-gradient probes used disposable model copies and synthetic targets, not additional predictive training. These short device-specific probes measure feasible tested workloads, not a guaranteed training gain or absolute VRAM ceiling."
+    }
+  ],
+  "per_run_results": [
+    {
+      "id": "resnet18_frozen_seed42",
+      "architecture": "resnet18",
+      "variant": "frozen",
+      "seed": 42,
+      "auroc": 0.96994301994302,
+      "ap": 0.9801053697296513,
+      "accuracy": 0.8782051282051282,
+      "balanced_accuracy": 0.8435897435897436,
+      "f1": 0.9097387173396675,
+      "precision": 0.8473451327433629,
+      "recall": 0.982051282051282,
+      "specificity": 0.7051282051282052,
+      "tn": 165,
+      "fp": 69,
+      "fn": 7,
+      "tp": 383,
+      "fp32_auroc": 0.9699868507560815,
+      "amp_fp32_max_probability_difference": 0.002581298351287842,
+      "amp_fp32_decision_disagreements": 0,
+      "history": [
+        {
+          "epoch": 1,
+          "phase": "head",
+          "train_loss": 0.13455951117413661,
+          "val_unweighted_bce": 0.1657719761133194,
+          "val_auroc": 0.9827287441683328,
+          "val_ap": 0.9940531544593116,
+          "training_seconds": 3.193619999990915,
+          "training_images_per_second": 1471.057921735637,
+          "trainable_parameters": 513
+        },
+        {
+          "epoch": 2,
+          "phase": "head",
+          "train_loss": 0.07528043432710728,
+          "val_unweighted_bce": 0.13153071701526642,
+          "val_auroc": 0.9882033704655813,
+          "val_ap": 0.9959744939250271,
+          "training_seconds": 2.601499700002023,
+          "training_images_per_second": 1805.8814306210938,
+          "trainable_parameters": 513
+        },
+        {
+          "epoch": 3,
+          "phase": "head",
+          "train_loss": 0.06531428844180702,
+          "val_unweighted_bce": 0.1405898928642273,
+          "val_auroc": 0.9885651718556603,
+          "val_ap": 0.996106055245537,
+          "training_seconds": 2.612884700007271,
+          "training_images_per_second": 1798.0127481273578,
+          "trainable_parameters": 513
+        },
+        {
+          "epoch": 4,
+          "phase": "head",
+          "train_loss": 0.06431175546983091,
+          "val_unweighted_bce": 0.1363118588924408,
+          "val_auroc": 0.9891078739407788,
+          "val_ap": 0.9962958685579979,
+          "training_seconds": 2.6156773999973666,
+          "training_images_per_second": 1796.0930503145112,
+          "trainable_parameters": 513
+        },
+        {
+          "epoch": 5,
+          "phase": "head",
+          "train_loss": 0.06344283596410706,
+          "val_unweighted_bce": 0.12977594137191772,
+          "val_auroc": 0.9895363229553461,
+          "val_ap": 0.996442470412607,
+          "training_seconds": 2.6487496999907307,
+          "training_images_per_second": 1773.667024867031,
+          "trainable_parameters": 513
+        }
+      ],
+      "checkpoint": "05_experiments\\supervisor_demo_01\\artifacts\\checkpoints\\resnet18_frozen_seed42.pt",
+      "predictions": "05_experiments\\supervisor_demo_01\\artifacts\\predictions\\resnet18_frozen_seed42.npz",
+      "description": "Seed 42 resnet18 frozen: AUROC 0.969943, F1 0.909739 on all 624 test images. At threshold 0.5: TN=165, FP=69, FN=7, TP=383. AMP versus FP32 changed 0 threshold decisions. Epoch loss is weighted training BCE; validation BCE is unweighted."
+    },
+    {
+      "id": "resnet18_partial_seed42",
+      "architecture": "resnet18",
+      "variant": "partial",
+      "seed": 42,
+      "auroc": 0.9867411790488714,
+      "ap": 0.990962903945008,
+      "accuracy": 0.9519230769230769,
+      "balanced_accuracy": 0.9452991452991453,
+      "f1": 0.9619289340101523,
+      "precision": 0.9522613065326633,
+      "recall": 0.9717948717948718,
+      "specificity": 0.9188034188034188,
+      "tn": 215,
+      "fp": 19,
+      "fn": 11,
+      "tp": 379,
+      "fp32_auroc": 0.9867521367521368,
+      "amp_fp32_max_probability_difference": 0.0031378865242004395,
+      "amp_fp32_decision_disagreements": 0,
+      "history": [
+        {
+          "epoch": 1,
+          "phase": "head",
+          "train_loss": 0.13455951117413661,
+          "val_unweighted_bce": 0.1657719761133194,
+          "val_auroc": 0.9827287441683328,
+          "val_ap": 0.9940531544593116,
+          "training_seconds": 3.193619999990915,
+          "training_images_per_second": 1471.057921735637,
+          "trainable_parameters": 513
+        },
+        {
+          "epoch": 2,
+          "phase": "head",
+          "train_loss": 0.07528043432710728,
+          "val_unweighted_bce": 0.13153071701526642,
+          "val_auroc": 0.9882033704655813,
+          "val_ap": 0.9959744939250271,
+          "training_seconds": 2.601499700002023,
+          "training_images_per_second": 1805.8814306210938,
+          "trainable_parameters": 513
+        },
+        {
+          "epoch": 3,
+          "phase": "partial",
+          "train_loss": 0.08143245458298412,
+          "val_unweighted_bce": 0.09937365353107452,
+          "val_auroc": 0.9975530800723603,
+          "val_ap": 0.9991934367655197,
+          "training_seconds": 4.339286000002176,
+          "training_images_per_second": 1082.6665953794345,
+          "trainable_parameters": 8394241
+        },
+        {
+          "epoch": 4,
+          "phase": "partial",
+          "train_loss": 0.0322693312812633,
+          "val_unweighted_bce": 0.16766494512557983,
+          "val_auroc": 0.9984766257259831,
+          "val_ap": 0.9994842821331238,
+          "training_seconds": 4.274191799995606,
+          "training_images_per_second": 1099.1551665989416,
+          "trainable_parameters": 8394241
+        },
+        {
+          "epoch": 5,
+          "phase": "partial",
+          "train_loss": 0.02512679215744233,
+          "val_unweighted_bce": 0.15236446261405945,
+          "val_auroc": 0.9992954393982671,
+          "val_ap": 0.9997620275428005,
+          "training_seconds": 4.257515600009356,
+          "training_images_per_second": 1103.4604312406223,
+          "trainable_parameters": 8394241
+        }
+      ],
+      "checkpoint": "05_experiments\\supervisor_demo_01\\artifacts\\checkpoints\\resnet18_partial_seed42.pt",
+      "predictions": "05_experiments\\supervisor_demo_01\\artifacts\\predictions\\resnet18_partial_seed42.npz",
+      "description": "Seed 42 resnet18 partial: AUROC 0.986741, F1 0.961929 on all 624 test images. At threshold 0.5: TN=215, FP=19, FN=11, TP=379. AMP versus FP32 changed 0 threshold decisions. Epoch loss is weighted training BCE; validation BCE is unweighted."
+    },
+    {
+      "id": "densenet121_partial_seed42",
+      "architecture": "densenet121",
+      "variant": "partial",
+      "seed": 42,
+      "auroc": 0.9854152969537585,
+      "ap": 0.989868060190239,
+      "accuracy": 0.9006410256410257,
+      "balanced_accuracy": 0.8683760683760684,
+      "f1": 0.9261904761904762,
+      "precision": 0.8644444444444445,
+      "recall": 0.9974358974358974,
+      "specificity": 0.7393162393162394,
+      "tn": 173,
+      "fp": 61,
+      "fn": 1,
+      "tp": 389,
+      "fp32_auroc": 0.9853824238439624,
+      "amp_fp32_max_probability_difference": 0.003567337989807129,
+      "amp_fp32_decision_disagreements": 0,
+      "history": [
+        {
+          "epoch": 1,
+          "phase": "head",
+          "train_loss": 0.1491815494750093,
+          "val_unweighted_bce": 0.19697995483875275,
+          "val_auroc": 0.9796153479958106,
+          "val_ap": 0.9932781010280585,
+          "training_seconds": 6.164923199990881,
+          "training_images_per_second": 762.0532888401513,
+          "trainable_parameters": 1025
+        },
+        {
+          "epoch": 2,
+          "phase": "head",
+          "train_loss": 0.08757509480846237,
+          "val_unweighted_bce": 0.1517992913722992,
+          "val_auroc": 0.985261353898886,
+          "val_ap": 0.9952403960070915,
+          "training_seconds": 5.998967600011383,
+          "training_images_per_second": 783.1347513847359,
+          "trainable_parameters": 1025
+        },
+        {
+          "epoch": 3,
+          "phase": "partial",
+          "train_loss": 0.0651116369124827,
+          "val_unweighted_bce": 0.11464668810367584,
+          "val_auroc": 0.9966104922403122,
+          "val_ap": 0.9989170243004225,
+          "training_seconds": 8.43966509999882,
+          "training_images_per_second": 556.65715929897,
+          "trainable_parameters": 2161153
+        },
+        {
+          "epoch": 4,
+          "phase": "partial",
+          "train_loss": 0.0408880202097302,
+          "val_unweighted_bce": 0.055117569863796234,
+          "val_auroc": 0.9972484052175569,
+          "val_ap": 0.9991133607192368,
+          "training_seconds": 8.287660300004063,
+          "training_images_per_second": 566.8668634979763,
+          "trainable_parameters": 2161153
+        },
+        {
+          "epoch": 5,
+          "phase": "partial",
+          "train_loss": 0.028243297513569604,
+          "val_unweighted_bce": 0.04773976281285286,
+          "val_auroc": 0.9982100352280301,
+          "val_ap": 0.9994042304886329,
+          "training_seconds": 8.355060499990941,
+          "training_images_per_second": 562.2939534674936,
+          "trainable_parameters": 2161153
+        }
+      ],
+      "checkpoint": "05_experiments\\supervisor_demo_01\\artifacts\\checkpoints\\densenet121_partial_seed42.pt",
+      "predictions": "05_experiments\\supervisor_demo_01\\artifacts\\predictions\\densenet121_partial_seed42.npz",
+      "description": "Seed 42 densenet121 partial: AUROC 0.985415, F1 0.926190 on all 624 test images. At threshold 0.5: TN=173, FP=61, FN=1, TP=389. AMP versus FP32 changed 0 threshold decisions. Epoch loss is weighted training BCE; validation BCE is unweighted."
+    },
+    {
+      "id": "mobilenet_v3_small_partial_seed42",
+      "architecture": "mobilenet_v3_small",
+      "variant": "partial",
+      "seed": 42,
+      "auroc": 0.9816074950690336,
+      "ap": 0.9881375930791861,
+      "accuracy": 0.9102564102564102,
+      "balanced_accuracy": 0.8837606837606837,
+      "f1": 0.9323671497584541,
+      "precision": 0.8812785388127854,
+      "recall": 0.9897435897435898,
+      "specificity": 0.7777777777777778,
+      "tn": 182,
+      "fp": 52,
+      "fn": 4,
+      "tp": 386,
+      "fp32_auroc": 0.9810322156476002,
+      "amp_fp32_max_probability_difference": 0.06583088636398315,
+      "amp_fp32_decision_disagreements": 5,
+      "history": [
+        {
+          "epoch": 1,
+          "phase": "head",
+          "train_loss": 0.09277025452569578,
+          "val_unweighted_bce": 0.1445949673652649,
+          "val_auroc": 0.9891840426544798,
+          "val_ap": 0.996395847293853,
+          "training_seconds": 5.7134575999953086,
+          "training_images_per_second": 822.2691632478129,
+          "trainable_parameters": 591873
+        },
+        {
+          "epoch": 2,
+          "phase": "head",
+          "train_loss": 0.06127017018337258,
+          "val_unweighted_bce": 0.14229312539100647,
+          "val_auroc": 0.9929353518042464,
+          "val_ap": 0.9977063641672363,
+          "training_seconds": 2.3648550999932922,
+          "training_images_per_second": 1986.5910600667778,
+          "trainable_parameters": 591873
+        },
+        {
+          "epoch": 3,
+          "phase": "partial",
+          "train_loss": 0.04743326770949739,
+          "val_unweighted_bce": 0.13620485365390778,
+          "val_auroc": 0.9955822146053509,
+          "val_ap": 0.9985894918822652,
+          "training_seconds": 3.8451766000071075,
+          "training_images_per_second": 1221.7904373992383,
+          "trainable_parameters": 942417
+        },
+        {
+          "epoch": 4,
+          "phase": "partial",
+          "train_loss": 0.035543848576064616,
+          "val_unweighted_bce": 0.12136196345090866,
+          "val_auroc": 0.9963439017423594,
+          "val_ap": 0.9988122889728628,
+          "training_seconds": 2.9660086000076262,
+          "training_images_per_second": 1583.9468570616823,
+          "trainable_parameters": 942417
+        },
+        {
+          "epoch": 5,
+          "phase": "partial",
+          "train_loss": 0.031492100923098926,
+          "val_unweighted_bce": 0.07245739549398422,
+          "val_auroc": 0.9958868894601544,
+          "val_ap": 0.9986681183718795,
+          "training_seconds": 2.9746273000055226,
+          "training_images_per_second": 1579.3575215258993,
+          "trainable_parameters": 942417
+        }
+      ],
+      "checkpoint": "05_experiments\\supervisor_demo_01\\artifacts\\checkpoints\\mobilenet_v3_small_partial_seed42.pt",
+      "predictions": "05_experiments\\supervisor_demo_01\\artifacts\\predictions\\mobilenet_v3_small_partial_seed42.npz",
+      "description": "Seed 42 mobilenet_v3_small partial: AUROC 0.981607, F1 0.932367 on all 624 test images. At threshold 0.5: TN=182, FP=52, FN=4, TP=386. AMP versus FP32 changed 5 threshold decisions. Epoch loss is weighted training BCE; validation BCE is unweighted."
+    },
+    {
+      "id": "resnet18_frozen_seed43",
+      "architecture": "resnet18",
+      "variant": "frozen",
+      "seed": 43,
+      "auroc": 0.9700580758273066,
+      "ap": 0.9800624238834306,
+      "accuracy": 0.8862179487179487,
+      "balanced_accuracy": 0.855982905982906,
+      "f1": 0.9147659063625451,
+      "precision": 0.8600451467268623,
+      "recall": 0.9769230769230769,
+      "specificity": 0.7350427350427351,
+      "tn": 172,
+      "fp": 62,
+      "fn": 9,
+      "tp": 381,
+      "fp32_auroc": 0.9700635546789393,
+      "amp_fp32_max_probability_difference": 0.0027600526809692383,
+      "amp_fp32_decision_disagreements": 0,
+      "history": [
+        {
+          "epoch": 1,
+          "phase": "head",
+          "train_loss": 0.12262257802938085,
+          "val_unweighted_bce": 0.17974455654621124,
+          "val_auroc": 0.9834523469484909,
+          "val_ap": 0.9943679336331639,
+          "training_seconds": 2.581022900005337,
+          "training_images_per_second": 1820.2085692421736,
+          "trainable_parameters": 513
+        },
+        {
+          "epoch": 2,
+          "phase": "head",
+          "train_loss": 0.07317761859268572,
+          "val_unweighted_bce": 0.14162728190422058,
+          "val_auroc": 0.9885556507664477,
+          "val_ap": 0.9961069174329997,
+          "training_seconds": 2.5596949999890057,
+          "training_images_per_second": 1835.3749177226891,
+          "trainable_parameters": 513
+        },
+        {
+          "epoch": 3,
+          "phase": "head",
+          "train_loss": 0.06433663463633128,
+          "val_unweighted_bce": 0.1371387094259262,
+          "val_auroc": 0.9889364943349519,
+          "val_ap": 0.9962435918939467,
+          "training_seconds": 2.5574275000108173,
+          "training_images_per_second": 1837.002221951601,
+          "trainable_parameters": 513
+        },
+        {
+          "epoch": 4,
+          "phase": "head",
+          "train_loss": 0.06379495736841143,
+          "val_unweighted_bce": 0.1438300609588623,
+          "val_auroc": 0.9894030277063697,
+          "val_ap": 0.9964036878784658,
+          "training_seconds": 2.5550676999991992,
+          "training_images_per_second": 1838.698833694885,
+          "trainable_parameters": 513
+        },
+        {
+          "epoch": 5,
+          "phase": "head",
+          "train_loss": 0.06311251468585369,
+          "val_unweighted_bce": 0.13225345313549042,
+          "val_auroc": 0.989850518899362,
+          "val_ap": 0.996560546260467,
+          "training_seconds": 2.5735496999986935,
+          "training_images_per_second": 1825.4941802765204,
+          "trainable_parameters": 513
+        }
+      ],
+      "checkpoint": "05_experiments\\supervisor_demo_01\\artifacts\\checkpoints\\resnet18_frozen_seed43.pt",
+      "predictions": "05_experiments\\supervisor_demo_01\\artifacts\\predictions\\resnet18_frozen_seed43.npz",
+      "description": "Seed 43 resnet18 frozen: AUROC 0.970058, F1 0.914766 on all 624 test images. At threshold 0.5: TN=172, FP=62, FN=9, TP=381. AMP versus FP32 changed 0 threshold decisions. Epoch loss is weighted training BCE; validation BCE is unweighted."
+    },
+    {
+      "id": "resnet18_partial_seed43",
+      "architecture": "resnet18",
+      "variant": "partial",
+      "seed": 43,
+      "auroc": 0.9909434582511505,
+      "ap": 0.9943944761227711,
+      "accuracy": 0.8685897435897436,
+      "balanced_accuracy": 0.8256410256410256,
+      "f1": 0.9046511627906977,
+      "precision": 0.8276595744680851,
+      "recall": 0.9974358974358974,
+      "specificity": 0.6538461538461539,
+      "tn": 153,
+      "fp": 81,
+      "fn": 1,
+      "tp": 389,
+      "fp32_auroc": 0.9909489371027833,
+      "amp_fp32_max_probability_difference": 0.004155874252319336,
+      "amp_fp32_decision_disagreements": 0,
+      "history": [
+        {
+          "epoch": 1,
+          "phase": "head",
+          "train_loss": 0.12262257802938085,
+          "val_unweighted_bce": 0.17974455654621124,
+          "val_auroc": 0.9834523469484909,
+          "val_ap": 0.9943679336331639,
+          "training_seconds": 2.581022900005337,
+          "training_images_per_second": 1820.2085692421736,
+          "trainable_parameters": 513
+        },
+        {
+          "epoch": 2,
+          "phase": "head",
+          "train_loss": 0.07317761859268572,
+          "val_unweighted_bce": 0.14162728190422058,
+          "val_auroc": 0.9885556507664477,
+          "val_ap": 0.9961069174329997,
+          "training_seconds": 2.5596949999890057,
+          "training_images_per_second": 1835.3749177226891,
+          "trainable_parameters": 513
+        },
+        {
+          "epoch": 3,
+          "phase": "partial",
+          "train_loss": 0.0666635317617703,
+          "val_unweighted_bce": 0.05338538810610771,
+          "val_auroc": 0.9976958964105493,
+          "val_ap": 0.9992291903453829,
+          "training_seconds": 4.266951600002358,
+          "training_images_per_second": 1101.0202224926581,
+          "trainable_parameters": 8394241
+        },
+        {
+          "epoch": 4,
+          "phase": "partial",
+          "train_loss": 0.033808845010094055,
+          "val_unweighted_bce": 0.05386779457330704,
+          "val_auroc": 0.9985147100828335,
+          "val_ap": 0.999512365760115,
+          "training_seconds": 4.254083799998625,
+          "training_images_per_second": 1104.350600710197,
+          "trainable_parameters": 8394241
+        },
+        {
+          "epoch": 5,
+          "phase": "partial",
+          "train_loss": 0.02346958957767933,
+          "val_unweighted_bce": 0.036044199019670486,
+          "val_auroc": 0.9989336380081881,
+          "val_ap": 0.9996479097132023,
+          "training_seconds": 4.252339800004847,
+          "training_images_per_second": 1104.8035248722701,
+          "trainable_parameters": 8394241
+        }
+      ],
+      "checkpoint": "05_experiments\\supervisor_demo_01\\artifacts\\checkpoints\\resnet18_partial_seed43.pt",
+      "predictions": "05_experiments\\supervisor_demo_01\\artifacts\\predictions\\resnet18_partial_seed43.npz",
+      "description": "Seed 43 resnet18 partial: AUROC 0.990943, F1 0.904651 on all 624 test images. At threshold 0.5: TN=153, FP=81, FN=1, TP=389. AMP versus FP32 changed 0 threshold decisions. Epoch loss is weighted training BCE; validation BCE is unweighted."
+    },
+    {
+      "id": "densenet121_partial_seed43",
+      "architecture": "densenet121",
+      "variant": "partial",
+      "seed": 43,
+      "auroc": 0.9843852728468112,
+      "ap": 0.987478083486699,
+      "accuracy": 0.9214743589743589,
+      "balanced_accuracy": 0.8961538461538461,
+      "f1": 0.9407496977025392,
+      "precision": 0.8901601830663616,
+      "recall": 0.9974358974358974,
+      "specificity": 0.7948717948717948,
+      "tn": 186,
+      "fp": 48,
+      "fn": 1,
+      "tp": 389,
+      "fp32_auroc": 0.9844400613631382,
+      "amp_fp32_max_probability_difference": 0.004636943340301514,
+      "amp_fp32_decision_disagreements": 0,
+      "history": [
+        {
+          "epoch": 1,
+          "phase": "head",
+          "train_loss": 0.1500751207919261,
+          "val_unweighted_bce": 0.22786499559879303,
+          "val_auroc": 0.9793963629439207,
+          "val_ap": 0.9932925413024732,
+          "training_seconds": 6.028873399991426,
+          "training_images_per_second": 779.2500668543946,
+          "trainable_parameters": 1025
+        },
+        {
+          "epoch": 2,
+          "phase": "head",
+          "train_loss": 0.08979171161805888,
+          "val_unweighted_bce": 0.19302377104759216,
+          "val_auroc": 0.9847757783490432,
+          "val_ap": 0.9951035216463854,
+          "training_seconds": 7.3216689999972004,
+          "training_images_per_second": 641.6569773916025,
+          "trainable_parameters": 1025
+        },
+        {
+          "epoch": 3,
+          "phase": "partial",
+          "train_loss": 0.0704432812687081,
+          "val_unweighted_bce": 0.0776195377111435,
+          "val_auroc": 0.9961725221365324,
+          "val_ap": 0.9987659620568803,
+          "training_seconds": 26.086167600005865,
+          "training_images_per_second": 180.09544644645095,
+          "trainable_parameters": 2161153
+        },
+        {
+          "epoch": 4,
+          "phase": "partial",
+          "train_loss": 0.041954258138852306,
+          "val_unweighted_bce": 0.06315150856971741,
+          "val_auroc": 0.9970294201656669,
+          "val_ap": 0.9989992968783186,
+          "training_seconds": 28.90852400001313,
+          "training_images_per_second": 162.51262084490602,
+          "trainable_parameters": 2161153
+        },
+        {
+          "epoch": 5,
+          "phase": "partial",
+          "train_loss": 0.026551106575957356,
+          "val_unweighted_bce": 0.050929389894008636,
+          "val_auroc": 0.9980767399790537,
+          "val_ap": 0.9993512868462693,
+          "training_seconds": 29.297255400000722,
+          "training_images_per_second": 160.35631788225064,
+          "trainable_parameters": 2161153
+        }
+      ],
+      "checkpoint": "05_experiments\\supervisor_demo_01\\artifacts\\checkpoints\\densenet121_partial_seed43.pt",
+      "predictions": "05_experiments\\supervisor_demo_01\\artifacts\\predictions\\densenet121_partial_seed43.npz",
+      "description": "Seed 43 densenet121 partial: AUROC 0.984385, F1 0.940750 on all 624 test images. At threshold 0.5: TN=186, FP=48, FN=1, TP=389. AMP versus FP32 changed 0 threshold decisions. Epoch loss is weighted training BCE; validation BCE is unweighted."
+    },
+    {
+      "id": "mobilenet_v3_small_partial_seed43",
+      "architecture": "mobilenet_v3_small",
+      "variant": "partial",
+      "seed": 43,
+      "auroc": 0.9820512820512821,
+      "ap": 0.9880407661934802,
+      "accuracy": 0.9294871794871795,
+      "balanced_accuracy": 0.9111111111111112,
+      "f1": 0.9458128078817734,
+      "precision": 0.909952606635071,
+      "recall": 0.9846153846153847,
+      "specificity": 0.8376068376068376,
+      "tn": 196,
+      "fp": 38,
+      "fn": 6,
+      "tp": 384,
+      "fp32_auroc": 0.9816239316239316,
+      "amp_fp32_max_probability_difference": 0.08086025714874268,
+      "amp_fp32_decision_disagreements": 3,
+      "history": [
+        {
+          "epoch": 1,
+          "phase": "head",
+          "train_loss": 0.08609705795476466,
+          "val_unweighted_bce": 0.1226101666688919,
+          "val_auroc": 0.9883652289821956,
+          "val_ap": 0.9960621036695299,
+          "training_seconds": 8.849645099995541,
+          "training_images_per_second": 530.8687463638928,
+          "trainable_parameters": 591873
+        },
+        {
+          "epoch": 2,
+          "phase": "head",
+          "train_loss": 0.06473566268849444,
+          "val_unweighted_bce": 0.12453584372997284,
+          "val_auroc": 0.9893839855279444,
+          "val_ap": 0.9964837644219386,
+          "training_seconds": 8.326296200000797,
+          "training_images_per_second": 564.236472874884,
+          "trainable_parameters": 591873
+        },
+        {
+          "epoch": 3,
+          "phase": "partial",
+          "train_loss": 0.04346015900944385,
+          "val_unweighted_bce": 0.0928478091955185,
+          "val_auroc": 0.9937351232981053,
+          "val_ap": 0.9978879285840803,
+          "training_seconds": 4.860984199985978,
+          "training_images_per_second": 966.4709463597005,
+          "trainable_parameters": 942417
+        },
+        {
+          "epoch": 4,
+          "phase": "partial",
+          "train_loss": 0.036890886549545684,
+          "val_unweighted_bce": 0.06277290731668472,
+          "val_auroc": 0.9968770827382653,
+          "val_ap": 0.9989899643650262,
+          "training_seconds": 2.960718000002089,
+          "training_images_per_second": 1586.7772614604582,
+          "trainable_parameters": 942417
+        },
+        {
+          "epoch": 5,
+          "phase": "partial",
+          "train_loss": 0.030609088636246475,
+          "val_unweighted_bce": 0.07071423530578613,
+          "val_auroc": 0.9967247453108636,
+          "val_ap": 0.9989490168513167,
+          "training_seconds": 2.8933626000070944,
+          "training_images_per_second": 1623.716294662992,
+          "trainable_parameters": 942417
+        }
+      ],
+      "checkpoint": "05_experiments\\supervisor_demo_01\\artifacts\\checkpoints\\mobilenet_v3_small_partial_seed43.pt",
+      "predictions": "05_experiments\\supervisor_demo_01\\artifacts\\predictions\\mobilenet_v3_small_partial_seed43.npz",
+      "description": "Seed 43 mobilenet_v3_small partial: AUROC 0.982051, F1 0.945813 on all 624 test images. At threshold 0.5: TN=196, FP=38, FN=6, TP=384. AMP versus FP32 changed 3 threshold decisions. Epoch loss is weighted training BCE; validation BCE is unweighted."
+    },
+    {
+      "id": "resnet18_frozen_seed44",
+      "architecture": "resnet18",
+      "variant": "frozen",
+      "seed": 44,
+      "auroc": 0.9684856454087224,
+      "ap": 0.9785502533004733,
+      "accuracy": 0.8862179487179487,
+      "balanced_accuracy": 0.855982905982906,
+      "f1": 0.9147659063625451,
+      "precision": 0.8600451467268623,
+      "recall": 0.9769230769230769,
+      "specificity": 0.7350427350427351,
+      "tn": 172,
+      "fp": 62,
+      "fn": 9,
+      "tp": 381,
+      "fp32_auroc": 0.9684856454087224,
+      "amp_fp32_max_probability_difference": 0.0022670626640319824,
+      "amp_fp32_decision_disagreements": 0,
+      "history": [
+        {
+          "epoch": 1,
+          "phase": "head",
+          "train_loss": 0.12804435252534324,
+          "val_unweighted_bce": 0.1661900281906128,
+          "val_auroc": 0.981224412072741,
+          "val_ap": 0.9934214996200568,
+          "training_seconds": 2.5943811000033747,
+          "training_images_per_second": 1810.8365035475663,
+          "trainable_parameters": 513
+        },
+        {
+          "epoch": 2,
+          "phase": "head",
+          "train_loss": 0.0757080701728129,
+          "val_unweighted_bce": 0.1539858877658844,
+          "val_auroc": 0.9871370084737694,
+          "val_ap": 0.9955713867380029,
+          "training_seconds": 2.6311535999993794,
+          "training_images_per_second": 1785.5285985588635,
+          "trainable_parameters": 513
+        },
+        {
+          "epoch": 3,
+          "phase": "head",
+          "train_loss": 0.06500042119194671,
+          "val_unweighted_bce": 0.1434621810913086,
+          "val_auroc": 0.9878130058078645,
+          "val_ap": 0.9958150881402661,
+          "training_seconds": 2.6454749000113225,
+          "training_images_per_second": 1775.8626248844369,
+          "trainable_parameters": 513
+        },
+        {
+          "epoch": 4,
+          "phase": "head",
+          "train_loss": 0.0665682958714147,
+          "val_unweighted_bce": 0.13720764219760895,
+          "val_auroc": 0.9884223555174712,
+          "val_ap": 0.9960183938669112,
+          "training_seconds": 2.5367281999933766,
+          "training_images_per_second": 1851.9918689011563,
+          "trainable_parameters": 513
+        },
+        {
+          "epoch": 5,
+          "phase": "head",
+          "train_loss": 0.06467567336665868,
+          "val_unweighted_bce": 0.13684925436973572,
+          "val_auroc": 0.9887841569075502,
+          "val_ap": 0.9961472036547456,
+          "training_seconds": 2.9259680999966804,
+          "training_images_per_second": 1605.622426302368,
+          "trainable_parameters": 513
+        }
+      ],
+      "checkpoint": "05_experiments\\supervisor_demo_01\\artifacts\\checkpoints\\resnet18_frozen_seed44.pt",
+      "predictions": "05_experiments\\supervisor_demo_01\\artifacts\\predictions\\resnet18_frozen_seed44.npz",
+      "description": "Seed 44 resnet18 frozen: AUROC 0.968486, F1 0.914766 on all 624 test images. At threshold 0.5: TN=172, FP=62, FN=9, TP=381. AMP versus FP32 changed 0 threshold decisions. Epoch loss is weighted training BCE; validation BCE is unweighted."
+    },
+    {
+      "id": "resnet18_partial_seed44",
+      "architecture": "resnet18",
+      "variant": "partial",
+      "seed": 44,
+      "auroc": 0.9890532544378698,
+      "ap": 0.9910750688314742,
+      "accuracy": 0.9118589743589743,
+      "balanced_accuracy": 0.8833333333333333,
+      "f1": 0.9339735894357744,
+      "precision": 0.8781038374717833,
+      "recall": 0.9974358974358974,
+      "specificity": 0.7692307692307693,
+      "tn": 180,
+      "fp": 54,
+      "fn": 1,
+      "tp": 389,
+      "fp32_auroc": 0.9890916063992987,
+      "amp_fp32_max_probability_difference": 0.003827691078186035,
+      "amp_fp32_decision_disagreements": 1,
+      "history": [
+        {
+          "epoch": 1,
+          "phase": "head",
+          "train_loss": 0.12804435252534324,
+          "val_unweighted_bce": 0.1661900281906128,
+          "val_auroc": 0.981224412072741,
+          "val_ap": 0.9934214996200568,
+          "training_seconds": 2.5943811000033747,
+          "training_images_per_second": 1810.8365035475663,
+          "trainable_parameters": 513
+        },
+        {
+          "epoch": 2,
+          "phase": "head",
+          "train_loss": 0.0757080701728129,
+          "val_unweighted_bce": 0.1539858877658844,
+          "val_auroc": 0.9871370084737694,
+          "val_ap": 0.9955713867380029,
+          "training_seconds": 2.6311535999993794,
+          "training_images_per_second": 1785.5285985588635,
+          "trainable_parameters": 513
+        },
+        {
+          "epoch": 3,
+          "phase": "partial",
+          "train_loss": 0.06309284520382676,
+          "val_unweighted_bce": 0.07194267213344574,
+          "val_auroc": 0.997486432447872,
+          "val_ap": 0.9991777402484541,
+          "training_seconds": 5.964153399996576,
+          "training_images_per_second": 787.7060975666215,
+          "trainable_parameters": 8394241
+        },
+        {
+          "epoch": 4,
+          "phase": "partial",
+          "train_loss": 0.033266378494464066,
+          "val_unweighted_bce": 0.10162638872861862,
+          "val_auroc": 0.998114824335904,
+          "val_ap": 0.9993605796216848,
+          "training_seconds": 6.693923900005757,
+          "training_images_per_second": 701.8305063187169,
+          "trainable_parameters": 8394241
+        },
+        {
+          "epoch": 5,
+          "phase": "partial",
+          "train_loss": 0.020394945205552063,
+          "val_unweighted_bce": 0.0281141996383667,
+          "val_auroc": 0.9993906502903933,
+          "val_ap": 0.9997946794685436,
+          "training_seconds": 4.360308899995289,
+          "training_images_per_second": 1077.4466001720832,
+          "trainable_parameters": 8394241
+        }
+      ],
+      "checkpoint": "05_experiments\\supervisor_demo_01\\artifacts\\checkpoints\\resnet18_partial_seed44.pt",
+      "predictions": "05_experiments\\supervisor_demo_01\\artifacts\\predictions\\resnet18_partial_seed44.npz",
+      "description": "Seed 44 resnet18 partial: AUROC 0.989053, F1 0.933974 on all 624 test images. At threshold 0.5: TN=180, FP=54, FN=1, TP=389. AMP versus FP32 changed 1 threshold decisions. Epoch loss is weighted training BCE; validation BCE is unweighted."
+    },
+    {
+      "id": "densenet121_partial_seed44",
+      "architecture": "densenet121",
+      "variant": "partial",
+      "seed": 44,
+      "auroc": 0.986746657900504,
+      "ap": 0.9911054793558481,
+      "accuracy": 0.9342948717948718,
+      "balanced_accuracy": 0.9158119658119659,
+      "f1": 0.949569495694957,
+      "precision": 0.9125295508274232,
+      "recall": 0.9897435897435898,
+      "specificity": 0.8418803418803419,
+      "tn": 197,
+      "fp": 37,
+      "fn": 4,
+      "tp": 386,
+      "fp32_auroc": 0.9867521367521366,
+      "amp_fp32_max_probability_difference": 0.005753815174102783,
+      "amp_fp32_decision_disagreements": 0,
+      "history": [
+        {
+          "epoch": 1,
+          "phase": "head",
+          "train_loss": 0.14518616320275915,
+          "val_unweighted_bce": 0.20924097299575806,
+          "val_auroc": 0.9794249262115586,
+          "val_ap": 0.9932212479645849,
+          "training_seconds": 6.057326499998453,
+          "training_images_per_second": 775.589692911749,
+          "trainable_parameters": 1025
+        },
+        {
+          "epoch": 2,
+          "phase": "head",
+          "train_loss": 0.0901866407788221,
+          "val_unweighted_bce": 0.179099902510643,
+          "val_auroc": 0.9846520041892793,
+          "val_ap": 0.9950347777606398,
+          "training_seconds": 6.020614699998987,
+          "training_images_per_second": 780.318993009267,
+          "trainable_parameters": 1025
+        },
+        {
+          "epoch": 3,
+          "phase": "partial",
+          "train_loss": 0.06742956324707655,
+          "val_unweighted_bce": 0.06812867522239685,
+          "val_auroc": 0.9963248595639341,
+          "val_ap": 0.9987891493284985,
+          "training_seconds": 8.287830800007214,
+          "training_images_per_second": 566.8552017249086,
+          "trainable_parameters": 2161153
+        },
+        {
+          "epoch": 4,
+          "phase": "partial",
+          "train_loss": 0.0381887183386298,
+          "val_unweighted_bce": 0.0899868980050087,
+          "val_auroc": 0.9970484623440922,
+          "val_ap": 0.9990254041307473,
+          "training_seconds": 8.569657899992308,
+          "training_images_per_second": 548.2132489797775,
+          "trainable_parameters": 2161153
+        },
+        {
+          "epoch": 5,
+          "phase": "partial",
+          "train_loss": 0.027628181233412156,
+          "val_unweighted_bce": 0.05466962605714798,
+          "val_auroc": 0.9982100352280301,
+          "val_ap": 0.9993998166811618,
+          "training_seconds": 8.24712780000118,
+          "training_images_per_second": 569.6528675109566,
+          "trainable_parameters": 2161153
+        }
+      ],
+      "checkpoint": "05_experiments\\supervisor_demo_01\\artifacts\\checkpoints\\densenet121_partial_seed44.pt",
+      "predictions": "05_experiments\\supervisor_demo_01\\artifacts\\predictions\\densenet121_partial_seed44.npz",
+      "description": "Seed 44 densenet121 partial: AUROC 0.986747, F1 0.949569 on all 624 test images. At threshold 0.5: TN=197, FP=37, FN=4, TP=386. AMP versus FP32 changed 0 threshold decisions. Epoch loss is weighted training BCE; validation BCE is unweighted."
+    },
+    {
+      "id": "mobilenet_v3_small_partial_seed44",
+      "architecture": "mobilenet_v3_small",
+      "variant": "partial",
+      "seed": 44,
+      "auroc": 0.9830813061582293,
+      "ap": 0.9886966064188933,
+      "accuracy": 0.9358974358974359,
+      "balanced_accuracy": 0.9196581196581197,
+      "f1": 0.9504950495049505,
+      "precision": 0.9186602870813397,
+      "recall": 0.9846153846153847,
+      "specificity": 0.8547008547008547,
+      "tn": 200,
+      "fp": 34,
+      "fn": 6,
+      "tp": 384,
+      "fp32_auroc": 0.9827197019504712,
+      "amp_fp32_max_probability_difference": 0.06404346227645874,
+      "amp_fp32_decision_disagreements": 0,
+      "history": [
+        {
+          "epoch": 1,
+          "phase": "head",
+          "train_loss": 0.08538232432268386,
+          "val_unweighted_bce": 0.13390028476715088,
+          "val_auroc": 0.9899266876130629,
+          "val_ap": 0.9967212861985005,
+          "training_seconds": 2.4271569000120508,
+          "training_images_per_second": 1935.597982963802,
+          "trainable_parameters": 591873
+        },
+        {
+          "epoch": 2,
+          "phase": "head",
+          "train_loss": 0.06499124902925779,
+          "val_unweighted_bce": 0.14541499316692352,
+          "val_auroc": 0.9925449871465295,
+          "val_ap": 0.9975322688542392,
+          "training_seconds": 2.366269200007082,
+          "training_images_per_second": 1985.4038585237636,
+          "trainable_parameters": 591873
+        },
+        {
+          "epoch": 3,
+          "phase": "partial",
+          "train_loss": 0.045622320974974394,
+          "val_unweighted_bce": 0.0767512395977974,
+          "val_auroc": 0.9958583261925165,
+          "val_ap": 0.9986498615140564,
+          "training_seconds": 2.809809699989273,
+          "training_images_per_second": 1671.999352845118,
+          "trainable_parameters": 942417
+        },
+        {
+          "epoch": 4,
+          "phase": "partial",
+          "train_loss": 0.04148880985758568,
+          "val_unweighted_bce": 0.07862347364425659,
+          "val_auroc": 0.9954489193563745,
+          "val_ap": 0.9985526861067376,
+          "training_seconds": 2.715258399999584,
+          "training_images_per_second": 1730.2220665262355,
+          "trainable_parameters": 942417
+        },
+        {
+          "epoch": 5,
+          "phase": "partial",
+          "train_loss": 0.031212863134495398,
+          "val_unweighted_bce": 0.07374943047761917,
+          "val_auroc": 0.9966295344187375,
+          "val_ap": 0.9989002094225536,
+          "training_seconds": 2.778109699997003,
+          "training_images_per_second": 1691.0779297178465,
+          "trainable_parameters": 942417
+        }
+      ],
+      "checkpoint": "05_experiments\\supervisor_demo_01\\artifacts\\checkpoints\\mobilenet_v3_small_partial_seed44.pt",
+      "predictions": "05_experiments\\supervisor_demo_01\\artifacts\\predictions\\mobilenet_v3_small_partial_seed44.npz",
+      "description": "Seed 44 mobilenet_v3_small partial: AUROC 0.983081, F1 0.950495 on all 624 test images. At threshold 0.5: TN=200, FP=34, FN=6, TP=384. AMP versus FP32 changed 0 threshold decisions. Epoch loss is weighted training BCE; validation BCE is unweighted."
+    }
+  ],
+  "limitations": [
+    "Previously examined test set; no prospective blinded claim.",
+    "Single pediatric binary dataset; no adult multi-finding or clinical deployment conclusion.",
+    "Only three seeds; exact-image clusters do not capture unknown patient clusters.",
+    "Architecture comparisons are exploratory; inconclusive differences do not prove equivalence.",
+    "Hardware timings depend on device/software/session; fixed five-epoch training does not establish convergence.",
+    "Fresh runs are method reproductions; bitwise equality across hardware/software is not guaranteed."
+  ]
+}

@@ -1,0 +1,560 @@
+{
+  "summary": [
+    {
+      "group": "resnet18_frozen",
+      "label": "ResNet-18 frozen",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "auroc_ci95": [
+        0.9560588157461318,
+        0.9806434567601096
+      ],
+      "auroc_mean": 0.9694955803930164,
+      "auroc_sd": 0.0008765192345310293,
+      "ap_mean": 0.9795726823045184,
+      "ap_sd": 0.0008857098213644283,
+      "f1_mean": 0.9130901766882525,
+      "f1_sd": 0.0029024489356255,
+      "precision_mean": 0.8558118087323625,
+      "precision_sd": 0.0073323564920853915,
+      "recall_mean": 0.9786324786324786,
+      "recall_sd": 0.0029607706112288394,
+      "specificity_mean": 0.7250712250712251,
+      "specificity_sd": 0.017271161898834965,
+      "accuracy_mean": 0.8835470085470085,
+      "accuracy_sd": 0.004626204080045062,
+      "balanced_accuracy_mean": 0.851851851851852,
+      "balanced_accuracy_sd": 0.007155195643803093,
+      "parameters": 11177025,
+      "weights_mib": 42.71039867401123,
+      "training_minutes_mean": 0.2391281094444114,
+      "training_peak_mib": 640.07958984375,
+      "partial_trainable_parameters": 513
+    },
+    {
+      "group": "resnet18_partial",
+      "label": "ResNet-18 partial FT",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "auroc_ci95": [
+        0.9814291512190013,
+        0.9950373964513181
+      ],
+      "auroc_mean": 0.9889126305792972,
+      "auroc_sd": 0.0021046659891005943,
+      "ap_mean": 0.9921441496330844,
+      "ap_sd": 0.0019496466918593578,
+      "f1_mean": 0.9335178954122081,
+      "f1_sd": 0.028641604559615414,
+      "precision_mean": 0.886008239490844,
+      "precision_sd": 0.06267581341181323,
+      "recall_mean": 0.9888888888888889,
+      "recall_sd": 0.014803853056144262,
+      "specificity_mean": 0.7806267806267807,
+      "specificity_sd": 0.13284573711719955,
+      "accuracy_mean": 0.9107905982905983,
+      "accuracy_sd": 0.04167693824741348,
+      "balanced_accuracy_mean": 0.8847578347578348,
+      "balanced_accuracy_sd": 0.059841777240156616,
+      "parameters": 11177025,
+      "weights_mib": 42.71052074432373,
+      "training_minutes_mean": 0.32289799277779013,
+      "training_peak_mib": 736.13818359375,
+      "partial_trainable_parameters": 8394241
+    },
+    {
+      "group": "densenet121_partial",
+      "label": "DenseNet-121 partial FT",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "auroc_ci95": [
+        0.9754018113647904,
+        0.9931046915666356
+      ],
+      "auroc_mean": 0.9855157425670246,
+      "auroc_sd": 0.001183892661464371,
+      "ap_mean": 0.9894838743442621,
+      "ap_sd": 0.0018439629256215798,
+      "f1_mean": 0.9388365565293242,
+      "f1_sd": 0.011806342367948289,
+      "precision_mean": 0.8890447261127431,
+      "precision_sd": 0.024061952271732367,
+      "recall_mean": 0.9948717948717949,
+      "recall_sd": 0.00444115591684326,
+      "specificity_mean": 0.792022792022792,
+      "specificity_sd": 0.05134137119925952,
+      "accuracy_mean": 0.9188034188034188,
+      "accuracy_sd": 0.0169851635636588,
+      "balanced_accuracy_mean": 0.8934472934472936,
+      "balanced_accuracy_sd": 0.023833488247679082,
+      "parameters": 6954881,
+      "weights_mib": 27.08641815185547,
+      "training_minutes_mean": 0.694631152777745,
+      "training_peak_mib": 717.12060546875,
+      "partial_trainable_parameters": 2161153
+    },
+    {
+      "group": "mobilenet_v3_small_partial",
+      "label": "MobileNetV3-Small partial FT",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "auroc_ci95": [
+        0.9726806038683826,
+        0.9900588266841247
+      ],
+      "auroc_mean": 0.9822466944261817,
+      "auroc_sd": 0.0007560881422539325,
+      "ap_mean": 0.9882916552305199,
+      "ap_sd": 0.0003540239542356807,
+      "f1_mean": 0.9428916690483926,
+      "f1_sd": 0.009410365368447119,
+      "precision_mean": 0.9032971441763987,
+      "precision_sd": 0.019559400842241788,
+      "recall_mean": 0.9863247863247864,
+      "recall_sd": 0.0029607706112288394,
+      "specificity_mean": 0.8233618233618234,
+      "specificity_sd": 0.04039158654916757,
+      "accuracy_mean": 0.9252136752136751,
+      "accuracy_sd": 0.01334401281709061,
+      "balanced_accuracy_mean": 0.9048433048433049,
+      "balanced_accuracy_sd": 0.018751547204449444,
+      "parameters": 1518881,
+      "weights_mib": 5.916010856628418,
+      "training_minutes_mean": 0.26954743611107307,
+      "training_peak_mib": 461.99267578125,
+      "partial_trainable_parameters": 942417
+    }
+  ],
+  "paired_comparisons": [
+    {
+      "comparison": "ResNet-18 partial FT minus ResNet-18 frozen",
+      "delta_auroc_mean": 0.019417050186280815,
+      "ci95": [
+        0.01125598940472764,
+        0.029072018145645587
+      ],
+      "seed_deltas": [
+        0.016798159105851473,
+        0.020885382423843968,
+        0.02056760902914756
+      ]
+    },
+    {
+      "comparison": "ResNet-18 partial FT minus DenseNet-121 partial FT",
+      "delta_auroc_mean": 0.0033968880122726697,
+      "ci95": [
+        -0.0022669634734020783,
+        0.009939652231827653
+      ],
+      "seed_deltas": [
+        0.0013258820951128625,
+        0.0065581854043392784,
+        0.002306596537365757
+      ]
+    },
+    {
+      "comparison": "MobileNetV3-Small partial FT minus DenseNet-121 partial FT",
+      "delta_auroc_mean": -0.003269048140842834,
+      "ci95": [
+        -0.008991039624950552,
+        0.002069227782122836
+      ],
+      "seed_deltas": [
+        -0.0038078018847249595,
+        -0.002333990795529317,
+        -0.0036653517422748916
+      ]
+    }
+  ],
+  "bootstrap": {
+    "repetitions": 2000,
+    "test_exact_image_clusters": 621,
+    "seed": 20261022,
+    "method": "paired training-seed and exact-image-cluster percentile bootstrap; no patient IDs"
+  },
+  "benchmark": {
+    "resnet18": {
+      "fp32": {
+        "median_ms": 1.5237120389938354,
+        "p95_ms": 2.3840768098831164,
+        "round_medians_ms": [
+          1.4684799909591675,
+          1.5267839431762695,
+          1.5237120389938354
+        ],
+        "peak_mib": 133.74365234375
+      },
+      "amp": {
+        "median_ms": 2.5916320085525513,
+        "p95_ms": 3.5483136534690844,
+        "round_medians_ms": [
+          2.475872039794922,
+          2.679935932159424,
+          2.5916320085525513
+        ],
+        "peak_mib": 135.0234375
+      },
+      "speedup_median": 0.5879353372567897,
+      "speedup_round_range": [
+        0.569709120600516,
+        0.5931162706941845
+      ],
+      "best_probed_amp_batch": 32,
+      "best_probed_amp_images_per_second": 2696.3754814641256,
+      "best_probed_peak_mib": 245.5439453125,
+      "largest_successfully_probed_batch": 128
+    },
+    "densenet121": {
+      "fp32": {
+        "median_ms": 10.713056087493896,
+        "p95_ms": 14.589641904830932,
+        "round_medians_ms": [
+          10.713056087493896,
+          10.347903728485107,
+          10.761312007904053
+        ],
+        "peak_mib": 102.09765625
+      },
+      "amp": {
+        "median_ms": 15.583888053894043,
+        "p95_ms": 19.412584877014158,
+        "round_medians_ms": [
+          15.583888053894043,
+          15.130655765533447,
+          15.978464126586914
+        ],
+        "peak_mib": 106.02587890625
+      },
+      "speedup_median": 0.6839031889190746,
+      "speedup_round_range": [
+        0.6734885107009798,
+        0.6874443688535711
+      ],
+      "best_probed_amp_batch": 16,
+      "best_probed_amp_images_per_second": 849.7754556802398,
+      "best_probed_peak_mib": 178.97119140625,
+      "largest_successfully_probed_batch": 128
+    },
+    "mobilenet_v3_small": {
+      "fp32": {
+        "median_ms": 15.970304012298584,
+        "p95_ms": 22.455348110198972,
+        "round_medians_ms": [
+          15.970304012298584,
+          15.657472133636475,
+          16.062464714050293
+        ],
+        "peak_mib": 82.45458984375
+      },
+      "amp": {
+        "median_ms": 21.723648071289062,
+        "p95_ms": 27.69884099960327,
+        "round_medians_ms": [
+          21.723648071289062,
+          20.711935997009277,
+          23.126096725463867
+        ],
+        "peak_mib": 74.36474609375
+      },
+      "speedup_median": 0.7351575554846908,
+      "speedup_round_range": [
+        0.6945601285306442,
+        0.7559637175345343
+      ],
+      "best_probed_amp_batch": 128,
+      "best_probed_amp_images_per_second": 6435.757066252744,
+      "best_probed_peak_mib": 269.15576171875,
+      "largest_successfully_probed_batch": 128
+    }
+  },
+  "synthetic_training_capacity": [
+    {
+      "architecture": "resnet18",
+      "batch_size": 16,
+      "amp": false,
+      "scope": "synthetic full-gradient AdamW step, fixed BN stats, no preprocessing/transfer",
+      "median_step_ms": 52.479649988526944,
+      "images_per_second": 304.88008215561473,
+      "peak_allocated_mib": 575.6162109375,
+      "warmup_steps": 3,
+      "measured_steps": 10,
+      "times_seconds": [
+        0.05228530000022147,
+        0.052130900003248826,
+        0.052486800006590784,
+        0.05273809999926016,
+        0.05248629998823162,
+        0.051830800002790056,
+        0.05227369999920484,
+        0.05378119999659248,
+        0.05455080000683665,
+        0.052472999988822266
+      ]
+    },
+    {
+      "architecture": "resnet18",
+      "batch_size": 16,
+      "amp": true,
+      "scope": "synthetic full-gradient AdamW step, fixed BN stats, no preprocessing/transfer",
+      "median_step_ms": 40.40444999554893,
+      "images_per_second": 395.9959856343201,
+      "peak_allocated_mib": 430.01318359375,
+      "warmup_steps": 3,
+      "measured_steps": 10,
+      "times_seconds": [
+        0.0428090999921551,
+        0.041580299992347136,
+        0.04163049999624491,
+        0.04487080000399146,
+        0.039228599998750724,
+        0.03887659999600146,
+        0.04185890000371728,
+        0.03697620000457391,
+        0.038419600008637644,
+        0.032971799999359064
+      ]
+    },
+    {
+      "architecture": "resnet18",
+      "batch_size": 32,
+      "amp": true,
+      "scope": "synthetic full-gradient AdamW step, fixed BN stats, no preprocessing/transfer",
+      "median_step_ms": 47.62569999729749,
+      "images_per_second": 671.9061347511077,
+      "peak_allocated_mib": 620.47802734375,
+      "warmup_steps": 3,
+      "measured_steps": 10,
+      "times_seconds": [
+        0.04714110000350047,
+        0.050766500004101545,
+        0.05277100000239443,
+        0.058545799998682924,
+        0.04535280000709463,
+        0.046965600005933084,
+        0.04498540000349749,
+        0.04706499999156222,
+        0.06207469999208115,
+        0.04811029999109451
+      ]
+    },
+    {
+      "architecture": "resnet18",
+      "batch_size": 64,
+      "amp": true,
+      "scope": "synthetic full-gradient AdamW step, fixed BN stats, no preprocessing/transfer",
+      "median_step_ms": 87.13905000331579,
+      "images_per_second": 734.458316880488,
+      "peak_allocated_mib": 1001.65380859375,
+      "warmup_steps": 3,
+      "measured_steps": 10,
+      "times_seconds": [
+        0.08711809999658726,
+        0.08732390000659507,
+        0.08644540001114365,
+        0.0867080000025453,
+        0.08743109999340959,
+        0.08907829999225214,
+        0.08705610000470188,
+        0.08691679999174085,
+        0.08717309999337886,
+        0.08716000001004431
+      ]
+    },
+    {
+      "architecture": "densenet121",
+      "batch_size": 16,
+      "amp": false,
+      "scope": "synthetic full-gradient AdamW step, fixed BN stats, no preprocessing/transfer",
+      "median_step_ms": 195.21625000197673,
+      "images_per_second": 81.96039007940162,
+      "peak_allocated_mib": 2161.29638671875,
+      "warmup_steps": 3,
+      "measured_steps": 10,
+      "times_seconds": [
+        0.2269808999990346,
+        0.19752499999594875,
+        0.19062389999453444,
+        0.18887810000160243,
+        0.17693629999121185,
+        0.20293769999989308,
+        0.3646182999946177,
+        0.20268010000290815,
+        0.19290750000800472,
+        0.18410399999993388
+      ]
+    },
+    {
+      "architecture": "densenet121",
+      "batch_size": 16,
+      "amp": true,
+      "scope": "synthetic full-gradient AdamW step, fixed BN stats, no preprocessing/transfer",
+      "median_step_ms": 189.89365000015823,
+      "images_per_second": 84.25768844817438,
+      "peak_allocated_mib": 1203.60498046875,
+      "warmup_steps": 3,
+      "measured_steps": 10,
+      "times_seconds": [
+        0.20830459998978768,
+        0.1905043000006117,
+        0.18928299999970477,
+        0.18635160000121687,
+        0.18072960000426974,
+        0.1572046999935992,
+        0.17082579999987502,
+        0.19144190000952221,
+        0.26266259999829344,
+        0.2372462000057567
+      ]
+    },
+    {
+      "architecture": "densenet121",
+      "batch_size": 32,
+      "amp": true,
+      "scope": "synthetic full-gradient AdamW step, fixed BN stats, no preprocessing/transfer",
+      "median_step_ms": 204.74999999714782,
+      "images_per_second": 156.28815629033338,
+      "peak_allocated_mib": 2226.67822265625,
+      "warmup_steps": 3,
+      "measured_steps": 10,
+      "times_seconds": [
+        0.21213410000200383,
+        0.2110940999991726,
+        0.19593450000684243,
+        0.2161878000042634,
+        0.19961239999975078,
+        0.20474629999080207,
+        0.2115503999957582,
+        0.1972373000025982,
+        0.20475370000349358,
+        0.187357200004044
+      ]
+    },
+    {
+      "architecture": "densenet121",
+      "batch_size": 64,
+      "amp": true,
+      "scope": "synthetic full-gradient AdamW step, fixed BN stats, no preprocessing/transfer",
+      "median_step_ms": 278.6060000071302,
+      "images_per_second": 229.71508150708198,
+      "peak_allocated_mib": 4273.46435546875,
+      "warmup_steps": 3,
+      "measured_steps": 10,
+      "times_seconds": [
+        0.28048470000794623,
+        0.27559869999822695,
+        0.28302880001137964,
+        0.27718889999960084,
+        0.28010750000248663,
+        0.27759869999135844,
+        0.2779985000088345,
+        0.2792135000054259,
+        0.28641269999207,
+        0.2777702000021236
+      ]
+    },
+    {
+      "architecture": "mobilenet_v3_small",
+      "batch_size": 16,
+      "amp": false,
+      "scope": "synthetic full-gradient AdamW step, fixed BN stats, no preprocessing/transfer",
+      "median_step_ms": 56.83684999530669,
+      "images_per_second": 281.5075079164521,
+      "peak_allocated_mib": 343.46875,
+      "warmup_steps": 3,
+      "measured_steps": 10,
+      "times_seconds": [
+        0.0634859999991022,
+        0.05749619999551214,
+        0.04730089999793563,
+        0.04692730000533629,
+        0.06033219999517314,
+        0.05748479999601841,
+        0.046834900000249036,
+        0.05230429999937769,
+        0.059070000002975576,
+        0.056188899994594976
+      ]
+    },
+    {
+      "architecture": "mobilenet_v3_small",
+      "batch_size": 16,
+      "amp": true,
+      "scope": "synthetic full-gradient AdamW step, fixed BN stats, no preprocessing/transfer",
+      "median_step_ms": 19.206050004868302,
+      "images_per_second": 833.0708290327453,
+      "peak_allocated_mib": 223.958984375,
+      "warmup_steps": 3,
+      "measured_steps": 10,
+      "times_seconds": [
+        0.04717230000824202,
+        0.020012500011944212,
+        0.020088199991732836,
+        0.019195200002286583,
+        0.021519899994018488,
+        0.019216900007450022,
+        0.01820880000013858,
+        0.018280300006153993,
+        0.018451900003128685,
+        0.018354700005147606
+      ]
+    },
+    {
+      "architecture": "mobilenet_v3_small",
+      "batch_size": 32,
+      "amp": true,
+      "scope": "synthetic full-gradient AdamW step, fixed BN stats, no preprocessing/transfer",
+      "median_step_ms": 24.995550003950484,
+      "images_per_second": 1280.2278803604033,
+      "peak_allocated_mib": 362.1142578125,
+      "warmup_steps": 3,
+      "measured_steps": 10,
+      "times_seconds": [
+        0.025708799992571585,
+        0.025592100006178953,
+        0.027815800000098534,
+        0.023923499989905395,
+        0.025051500007975847,
+        0.02347590000135824,
+        0.02493959999992512,
+        0.023692599992500618,
+        0.023100499995052814,
+        0.027483700003358535
+      ]
+    },
+    {
+      "architecture": "mobilenet_v3_small",
+      "batch_size": 64,
+      "amp": true,
+      "scope": "synthetic full-gradient AdamW step, fixed BN stats, no preprocessing/transfer",
+      "median_step_ms": 31.636199993954506,
+      "images_per_second": 2022.9989699214832,
+      "peak_allocated_mib": 629.43408203125,
+      "warmup_steps": 3,
+      "measured_steps": 10,
+      "times_seconds": [
+        0.059861999994609505,
+        0.0329968000005465,
+        0.031238800002029166,
+        0.031847099991864525,
+        0.031408299997565337,
+        0.03326530000776984,
+        0.030977100002928637,
+        0.03375159999995958,
+        0.03142529999604449,
+        0.029003300005570054
+      ]
+    }
+  ]
+}

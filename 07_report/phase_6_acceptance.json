@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "description": "Core comparison complete with checked local values, verified citations, team details, source links, limitations and seven result figures. This is technical acceptance, not a supervisor sign-off.",
+  "report": "07_report/FINAL_COMPARATIVE_REPORT.md",
+  "primary_session": "retrained_v1",
+  "source_report_sha256": "59435284b4eec62862add919e6664ee95b8fe04ab49e6faac7bd96dfc2eedf92",
+  "report_sha256": "d7930bb5e88410f21c659630462bf4b41329790ad4953d312f93ff81951000bc",
+  "verified_primary_references": 6,
+  "figure_links_verified": 7,
+  "project_details_source": "01_planning/PROJECT_DETAILS.md"
+}

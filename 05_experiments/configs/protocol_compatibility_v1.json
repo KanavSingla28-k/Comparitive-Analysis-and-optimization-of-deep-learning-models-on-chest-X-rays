@@ -1,0 +1,23 @@
+{
+  "phase": 3,
+  "protocol_id": "cxr_compare_v1",
+  "adopted_date_ist": "2026-10-22",
+  "status": "PASS",
+  "study_route": "evidence adoption after test exposure",
+  "prospective_preregistration": false,
+  "archived_training_config_matches_original_lock": true,
+  "phase_1_passed": true,
+  "phase_2_passed": true,
+  "run_metadata_matched": 12,
+  "core_runs": 9,
+  "control_runs": 3,
+  "recorded_epochs_and_modes_match": true,
+  "recorded_class_weights_match": true,
+  "paired_initial_state_hashes_match": true,
+  "new_training_runs": 0,
+  "new_inference": false,
+  "new_statistics_recomputed": false,
+  "documentation_clarification": "Latency cases use independent random tensors of the same shape; real-image precision agreement uses matched images",
+  "phase_4_integrity_acceptance": "pending",
+  "phase_5_analysis_acceptance": "pending"
+}

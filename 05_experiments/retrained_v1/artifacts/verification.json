@@ -1,0 +1,77 @@
+{
+  "status": "PASS",
+  "runs_verified": 12,
+  "frozen_files_verified": 18,
+  "dataset_sha256": "2a6faaca43872b4bcf4154a79625631ab29683b41e265ab7936d0513351fe591",
+  "accepted_split_counts": {
+    "train": 4698,
+    "val": 524,
+    "test": 624
+  },
+  "independent_rank_auroc": true,
+  "all_predictive_metrics_recomputed": true,
+  "test_labels_and_order_verified": true,
+  "runs": [
+    {
+      "run_id": "resnet18_frozen_seed42",
+      "checkpoint_sha256": "a3cdc1783f7fddcd11530fd0c10abd859d0ce70ffd26c60b194f6e274de5bc1c",
+      "status": "PASS"
+    },
+    {
+      "run_id": "resnet18_partial_seed42",
+      "checkpoint_sha256": "3aa0805cd091c7111d99f6482ec742e885f2cff83062202dcc935463a4f5f9b5",
+      "status": "PASS"
+    },
+    {
+      "run_id": "densenet121_partial_seed42",
+      "checkpoint_sha256": "e64dc1ed1d33f352d06a83d0703876a3b2b3dd7dcfac3058c9a193b728332c05",
+      "status": "PASS"
+    },
+    {
+      "run_id": "mobilenet_v3_small_partial_seed42",
+      "checkpoint_sha256": "666c0dba5339c9e055496b76faa753b3cb34f55eb0e85ed9040fbfc03ebac27b",
+      "status": "PASS"
+    },
+    {
+      "run_id": "resnet18_frozen_seed43",
+      "checkpoint_sha256": "07c9f78514139135fa2ba8c64c6fb92f96dd09cf1a0fac525ba060e80d7e17e1",
+      "status": "PASS"
+    },
+    {
+      "run_id": "resnet18_partial_seed43",
+      "checkpoint_sha256": "1d1d26689c21b82df80e99b2e51855fd3dd3e82c0e8ad5a812ca8529da4c20d6",
+      "status": "PASS"
+    },
+    {
+      "run_id": "densenet121_partial_seed43",
+      "checkpoint_sha256": "e4c8c83e1b7a3f26e96f5314ef99138eead5beac0354d7f082d56cd6c9797d11",
+      "status": "PASS"
+    },
+    {
+      "run_id": "mobilenet_v3_small_partial_seed43",
+      "checkpoint_sha256": "b2da33e20dee50a3fbefde1317ced58a264f09f6ce456ded065a9e37eac2c31b",
+      "status": "PASS"
+    },
+    {
+      "run_id": "resnet18_frozen_seed44",
+      "checkpoint_sha256": "b195a287eec5eb5d6225961cb856faaf3085b9773fdce0d0b4f21a834895c59a",
+      "status": "PASS"
+    },
+    {
+      "run_id": "resnet18_partial_seed44",
+      "checkpoint_sha256": "356be21475a01cc63371ef22c072f9525b44c415568b809545534e2e4d4a232b",
+      "status": "PASS"
+    },
+    {
+      "run_id": "densenet121_partial_seed44",
+      "checkpoint_sha256": "e33b97cd2b9bf418efc16e45c29e2b722c6c191d5169479b897f56da1e60c87c",
+      "status": "PASS"
+    },
+    {
+      "run_id": "mobilenet_v3_small_partial_seed44",
+      "checkpoint_sha256": "7653a5476faf10aa8ba50dbbe3d2bee477a7383e44ca19a66d18d85c8e1cb5e5",
+      "status": "PASS"
+    }
+  ],
+  "description": "All twelve checkpoint hashes, five-epoch histories, accepted splits and raw prediction-derived scores passed. This checks artifact consistency; checkpoint inference is checked separately by replay."
+}
