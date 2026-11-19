@@ -1,0 +1,14 @@
+{
+  "created_utc": "2026-11-19T09:34:28.083857+00:00",
+  "python": "3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]",
+  "torch": "2.10.0+cu128",
+  "torchvision": "0.25.0+cu128",
+  "cuda": "12.8",
+  "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "physical_vram_mib": 6140.5,
+  "before": "name, memory.total [MiB], memory.used [MiB], power.draw [W], temperature.gpu\nNVIDIA GeForce RTX 4050 Laptop GPU, 6141 MiB, 570 MiB, 12.17 W, 44",
+  "train_images": 4698,
+  "validation_images": 524,
+  "after": "name, memory.total [MiB], memory.used [MiB], power.draw [W], temperature.gpu\nNVIDIA GeForce RTX 4050 Laptop GPU, 6141 MiB, 899 MiB, 37.33 W, 62",
+  "completed_utc": "2026-11-19T09:37:19.801948+00:00"
+}

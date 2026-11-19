@@ -1,0 +1,87 @@
+{
+  "protocol": {
+    "id": "cxr_batch32_v2_pilot",
+    "architecture": "resnet18",
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "batches": [
+      16,
+      32
+    ],
+    "sessions": [
+      1,
+      2
+    ],
+    "epochs": 3,
+    "start_epoch": 2,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001,
+    "rotation_degrees": 5,
+    "threshold": 0.5,
+    "max_memory_fraction": 0.7,
+    "max_mean_auroc_drop": 0.005,
+    "max_seed_auroc_drop": 0.01,
+    "minimum_median_speedup": 1.1,
+    "timing": "Adaptation training plus per-epoch validation; excludes model loading, warm-up and checkpoint writing.",
+    "augmentation": "One full-epoch angle vector generated before batching; identical per-image angles and image order for each paired seed/epoch.",
+    "precision": "CUDA float16 autocast and GradScaler; validation inference batch 64.",
+    "selection": "Validation only. Fixed final epoch; no test labels or predictions accessed.",
+    "timing_repeats": "Two technical sessions, reversed order. Three independent training seeds, not six."
+  },
+  "summary": [
+    {
+      "batch": 16,
+      "mean_validation_auroc": 0.9991240597924401,
+      "seed_sd_validation_auroc": 0.00038510422576697054,
+      "mean_validation_f1": 0.9926991419022734,
+      "median_adaptation_seconds_technical_runs": 14.253402200061828,
+      "max_allocated_mib": 735.11962890625,
+      "max_reserved_mib": 914.0,
+      "optimizer_steps_per_three_epochs": 882
+    },
+    {
+      "batch": 32,
+      "mean_validation_auroc": 0.9989368117045924,
+      "seed_sd_validation_auroc": 0.00035781227820786765,
+      "mean_validation_f1": 0.9900816551368713,
+      "median_adaptation_seconds_technical_runs": 11.290266550029628,
+      "max_allocated_mib": 744.80712890625,
+      "max_reserved_mib": 902.0,
+      "optimizer_steps_per_three_epochs": 441
+    }
+  ],
+  "checks": {
+    "all_twelve_runs_completed_with_finite_losses": true,
+    "no_skipped_amp_updates": true,
+    "peak_allocated_memory_below_70_percent": true,
+    "mean_validation_auroc_drop_at_most_0_005": true,
+    "each_seed_validation_auroc_drop_at_most_0_010": true,
+    "median_paired_speedup_at_least_1_10": true,
+    "technical_sessions_reproduce_final_weights": true,
+    "checkpoint_validation_replay_passes": true,
+    "original_checkpoints_unchanged": true
+  },
+  "accepted": true,
+  "recommendation": "Batch 32 meets the predefined engineering pilot criteria; it is a candidate for this ResNet recipe.",
+  "mean_validation_auroc_delta": -0.00018724808784786884,
+  "worst_seed_validation_auroc_delta": -0.00022850614110236922,
+  "median_paired_speedup": 1.2527218538070741,
+  "seed_speedups": [
+    1.3069559689819277,
+    1.2527218538070741,
+    1.2483710469537779
+  ],
+  "descriptions": {
+    "validation_auroc": "Ranking performance on the accepted 524-image validation split; mean and sample SD over three seeds. Timing repetitions do not increase seed count.",
+    "delta": "Batch-32 AUROC minus batch-16 AUROC. Negative means worse ranking.",
+    "speedup": "Batch-16 adaptation seconds divided by batch-32 seconds. First take the median across two technical sessions for each seed, then the median across three seeds.",
+    "memory": "Maximum allocated CUDA tensor memory includes resident train/validation arrays; reserved memory also reported. nvidia-smi before/after snapshots include other GPU uses and are not continuous peaks.",
+    "acceptance": "Practical engineering criteria fixed in the original proposal; not a statistical equivalence/non-inferiority test.",
+    "optimization_scope": "Changing physical batch changes optimizer update count: 882 versus 441 over the same 14094 image presentations. This is an operational recipe comparison, not a pure kernel-only speed experiment.",
+    "augmentation_deviation": "V2 generates all angles once per epoch to guarantee paired per-image rotations across batch sizes. V1 drew angles per batch. Therefore rerun batch16 is the appropriate V2 control; do not substitute old V1 test results.",
+    "scope_limit": "ResNet-only, short training budget and existing validation split; no new test evaluation, external validation, or conclusion for DenseNet/MobileNet."
+  }
+}

@@ -1,0 +1,130 @@
+check,passed,detail
+12 unique runs,True,
+resnet18_batch16_seed42_session1: validation indices,True,
+"resnet18_batch16_seed42_session1: finite probabilities in [0,1]",True,
+resnet18_batch16_seed42_session1: independent AUROC,True,0.9988384271160621
+resnet18_batch16_seed42_session1: independent F1,True,0.9909443725743855
+resnet18_batch16_seed42_session1: optimizer update count,True,
+resnet18_batch16_seed42_session1: timing and memory positive,True,
+resnet18_batch16_seed42_session1: checkpoint hash,True,
+resnet18_batch32_seed42_session1: validation indices,True,
+"resnet18_batch32_seed42_session1: finite probabilities in [0,1]",True,
+resnet18_batch32_seed42_session1: independent AUROC,True,0.9986384842425974
+resnet18_batch32_seed42_session1: independent F1,True,0.9856957087126138
+resnet18_batch32_seed42_session1: optimizer update count,True,
+resnet18_batch32_seed42_session1: timing and memory positive,True,
+resnet18_batch32_seed42_session1: checkpoint hash,True,
+resnet18_batch32_seed43_session1: validation indices,True,
+"resnet18_batch32_seed43_session1: finite probabilities in [0,1]",True,
+resnet18_batch32_seed43_session1: independent AUROC,True,0.9988384271160621
+resnet18_batch32_seed43_session1: independent F1,True,0.9909677419354839
+resnet18_batch32_seed43_session1: optimizer update count,True,
+resnet18_batch32_seed43_session1: timing and memory positive,True,
+resnet18_batch32_seed43_session1: checkpoint hash,True,
+resnet18_batch16_seed43_session1: validation indices,True,
+"resnet18_batch16_seed43_session1: finite probabilities in [0,1]",True,
+resnet18_batch16_seed43_session1: independent AUROC,True,0.9989717223650385
+resnet18_batch16_seed43_session1: independent F1,True,0.9923076923076923
+resnet18_batch16_seed43_session1: optimizer update count,True,
+resnet18_batch16_seed43_session1: timing and memory positive,True,
+resnet18_batch16_seed43_session1: checkpoint hash,True,
+resnet18_batch16_seed44_session1: validation indices,True,
+"resnet18_batch16_seed44_session1: finite probabilities in [0,1]",True,
+resnet18_batch16_seed44_session1: independent AUROC,True,0.9995620298962201
+resnet18_batch16_seed44_session1: independent F1,True,0.9948453608247423
+resnet18_batch16_seed44_session1: optimizer update count,True,
+resnet18_batch16_seed44_session1: timing and memory positive,True,
+resnet18_batch16_seed44_session1: checkpoint hash,True,
+resnet18_batch32_seed44_session1: validation indices,True,
+"resnet18_batch32_seed44_session1: finite probabilities in [0,1]",True,
+resnet18_batch32_seed44_session1: independent AUROC,True,0.9993335237551176
+resnet18_batch32_seed44_session1: independent F1,True,0.993581514762516
+resnet18_batch32_seed44_session1: optimizer update count,True,
+resnet18_batch32_seed44_session1: timing and memory positive,True,
+resnet18_batch32_seed44_session1: checkpoint hash,True,
+resnet18_batch32_seed42_session2: validation indices,True,
+"resnet18_batch32_seed42_session2: finite probabilities in [0,1]",True,
+resnet18_batch32_seed42_session2: independent AUROC,True,0.9986384842425974
+resnet18_batch32_seed42_session2: independent F1,True,0.9856957087126138
+resnet18_batch32_seed42_session2: optimizer update count,True,
+resnet18_batch32_seed42_session2: timing and memory positive,True,
+resnet18_batch32_seed42_session2: checkpoint hash,True,
+resnet18_batch16_seed42_session2: validation indices,True,
+"resnet18_batch16_seed42_session2: finite probabilities in [0,1]",True,
+resnet18_batch16_seed42_session2: independent AUROC,True,0.9988384271160621
+resnet18_batch16_seed42_session2: independent F1,True,0.9909443725743855
+resnet18_batch16_seed42_session2: optimizer update count,True,
+resnet18_batch16_seed42_session2: timing and memory positive,True,
+resnet18_batch16_seed42_session2: checkpoint hash,True,
+resnet18_batch16_seed43_session2: validation indices,True,
+"resnet18_batch16_seed43_session2: finite probabilities in [0,1]",True,
+resnet18_batch16_seed43_session2: independent AUROC,True,0.9989717223650385
+resnet18_batch16_seed43_session2: independent F1,True,0.9923076923076923
+resnet18_batch16_seed43_session2: optimizer update count,True,
+resnet18_batch16_seed43_session2: timing and memory positive,True,
+resnet18_batch16_seed43_session2: checkpoint hash,True,
+resnet18_batch32_seed43_session2: validation indices,True,
+"resnet18_batch32_seed43_session2: finite probabilities in [0,1]",True,
+resnet18_batch32_seed43_session2: independent AUROC,True,0.9988384271160621
+resnet18_batch32_seed43_session2: independent F1,True,0.9909677419354839
+resnet18_batch32_seed43_session2: optimizer update count,True,
+resnet18_batch32_seed43_session2: timing and memory positive,True,
+resnet18_batch32_seed43_session2: checkpoint hash,True,
+resnet18_batch32_seed44_session2: validation indices,True,
+"resnet18_batch32_seed44_session2: finite probabilities in [0,1]",True,
+resnet18_batch32_seed44_session2: independent AUROC,True,0.9993335237551176
+resnet18_batch32_seed44_session2: independent F1,True,0.993581514762516
+resnet18_batch32_seed44_session2: optimizer update count,True,
+resnet18_batch32_seed44_session2: timing and memory positive,True,
+resnet18_batch32_seed44_session2: checkpoint hash,True,
+resnet18_batch16_seed44_session2: validation indices,True,
+"resnet18_batch16_seed44_session2: finite probabilities in [0,1]",True,
+resnet18_batch16_seed44_session2: independent AUROC,True,0.9995620298962201
+resnet18_batch16_seed44_session2: independent F1,True,0.9948453608247423
+resnet18_batch16_seed44_session2: optimizer update count,True,
+resnet18_batch16_seed44_session2: timing and memory positive,True,
+resnet18_batch16_seed44_session2: checkpoint hash,True,
+42/16: exact prediction repetition,True,
+42/16: exact final state repetition,True,
+42/32: exact prediction repetition,True,
+42/32: exact final state repetition,True,
+42: shared initial state,True,
+43/16: exact prediction repetition,True,
+43/16: exact final state repetition,True,
+43/32: exact prediction repetition,True,
+43/32: exact final state repetition,True,
+43: shared initial state,True,
+44/16: exact prediction repetition,True,
+44/16: exact final state repetition,True,
+44/32: exact prediction repetition,True,
+44/32: exact final state repetition,True,
+44: shared initial state,True,
+reported AUROC delta,True,
+reported median paired speedup,True,
+acceptance arithmetic: all_twelve_runs_completed_with_finite_losses,True,True
+acceptance arithmetic: no_skipped_amp_updates,True,True
+acceptance arithmetic: peak_allocated_memory_below_70_percent,True,True
+acceptance arithmetic: mean_validation_auroc_drop_at_most_0_005,True,True
+acceptance arithmetic: each_seed_validation_auroc_drop_at_most_0_010,True,True
+acceptance arithmetic: median_paired_speedup_at_least_1_10,True,True
+reported acceptance matches all criteria,True,
+36 finite-loss epochs,True,
+original unchanged: 05_experiments\retrained_v1\artifacts\checkpoints\densenet121_partial_seed42.pt,True,
+original unchanged: 05_experiments\retrained_v1\artifacts\checkpoints\densenet121_partial_seed43.pt,True,
+original unchanged: 05_experiments\retrained_v1\artifacts\checkpoints\densenet121_partial_seed44.pt,True,
+original unchanged: 05_experiments\retrained_v1\artifacts\checkpoints\mobilenet_v3_small_partial_seed42.pt,True,
+original unchanged: 05_experiments\retrained_v1\artifacts\checkpoints\mobilenet_v3_small_partial_seed43.pt,True,
+original unchanged: 05_experiments\retrained_v1\artifacts\checkpoints\mobilenet_v3_small_partial_seed44.pt,True,
+original unchanged: 05_experiments\retrained_v1\artifacts\checkpoints\resnet18_frozen_seed42.pt,True,
+original unchanged: 05_experiments\retrained_v1\artifacts\checkpoints\resnet18_frozen_seed43.pt,True,
+original unchanged: 05_experiments\retrained_v1\artifacts\checkpoints\resnet18_frozen_seed44.pt,True,
+original unchanged: 05_experiments\retrained_v1\artifacts\checkpoints\resnet18_partial_seed42.pt,True,
+original unchanged: 05_experiments\retrained_v1\artifacts\checkpoints\resnet18_partial_seed43.pt,True,
+original unchanged: 05_experiments\retrained_v1\artifacts\checkpoints\resnet18_partial_seed44.pt,True,
+original unchanged: 05_experiments\retrained_v1\artifacts\checkpoints\resnet18_shared_seed42.pt,True,
+original unchanged: 05_experiments\retrained_v1\artifacts\checkpoints\resnet18_shared_seed43.pt,True,
+original unchanged: 05_experiments\retrained_v1\artifacts\checkpoints\resnet18_shared_seed44.pt,True,
+versioned source: batch32_pilot.py,True,
+versioned source: experiment.py,True,
+versioned source: settings.py,True,
+versioned source: runtime.py,True,

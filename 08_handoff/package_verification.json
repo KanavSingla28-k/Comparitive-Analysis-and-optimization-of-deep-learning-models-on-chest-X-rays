@@ -1,7 +1,8 @@
 {
   "status": "PASS",
-  "files_checked": 6471,
-  "manifest_sha256": "188a3cfb3e48a489fbff06084ba66d2c6ca6bc6c6cdc70905b5d803eabf920b4",
+  "created_utc": "2026-11-19T09:37:40.591223+00:00",
+  "files_checked": 6542,
+  "manifest_sha256": "1c736e1da9b5f068355c01681d4def574d99b5a6e1c73ef49c4c33e14ba16296",
   "failures": [],
-  "description": "Listed retained files verified by byte count and SHA-256. Active cache, local virtual environment, Git metadata, Python caches and manifest/verification outputs are excluded. New extra files are not implicitly authenticated by this snapshot."
+  "description": "Current retained files checked by size and SHA-256, including the optimization extension. Previous manifest retained separately. Git, local venv, active caches, bytecode and current manifest/verification outputs excluded. Extra files created later are not authenticated."
 }

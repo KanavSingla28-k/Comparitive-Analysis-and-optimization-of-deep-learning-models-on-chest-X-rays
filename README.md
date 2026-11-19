@@ -47,3 +47,9 @@ All new project files and outputs remain under this root. The existing shared Py
 The source proposal is [initial.md](initial.md). Its broad adult multi-finding theme was narrowed to an achievable pediatric binary benchmark for the one-evening college project. No novel architecture or clinical validation is claimed. The test scores had already been examined before formal protocol adoption; neither replay nor retraining makes that test split newly blinded.
 
 [Milestone tracker](MILESTONE_TRACKER.md) records formal progress. [Your next steps](YOUR_NEXT_STEPS.md) explains what to demonstrate and review. The original pilot and new reproduction results have distinct provenance, so rerun timing measurements should not be mixed into the original tables.
+
+## Additional batch-size optimization pilot
+
+Completed 19 November 2026. Batch 32 meets the predefined engineering pilot criteria; it is a candidate for this ResNet recipe. Median paired speedup was **1.253x**, equivalent to **20.17% less measured adaptation time**. Mean paired validation AUROC changed by **-0.000187** (-0.0187 percentage points). All 129 independent verification checks passed.
+
+Read [the completed optimization report](06_results/BATCH_SIZE_OPTIMIZATION.md). `./optimize.ps1 -Stage verify` checks retained pilot files; `./optimize.ps1 -RunDir 05_experiments/batch32_repeat_new` runs a new validation-only comparison. CSV, Markdown, explained JSON, source, checkpoints and predictions are retained.

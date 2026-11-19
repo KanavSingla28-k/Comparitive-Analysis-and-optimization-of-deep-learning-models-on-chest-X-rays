@@ -1,0 +1,32 @@
+{
+  "id": "cxr_batch32_v2_pilot",
+  "architecture": "resnet18",
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "batches": [
+    16,
+    32
+  ],
+  "sessions": [
+    1,
+    2
+  ],
+  "epochs": 3,
+  "start_epoch": 2,
+  "learning_rate": 0.0001,
+  "weight_decay": 0.0001,
+  "rotation_degrees": 5,
+  "threshold": 0.5,
+  "max_memory_fraction": 0.7,
+  "max_mean_auroc_drop": 0.005,
+  "max_seed_auroc_drop": 0.01,
+  "minimum_median_speedup": 1.1,
+  "timing": "Adaptation training plus per-epoch validation; excludes model loading, warm-up and checkpoint writing.",
+  "augmentation": "One full-epoch angle vector generated before batching; identical per-image angles and image order for each paired seed/epoch.",
+  "precision": "CUDA float16 autocast and GradScaler; validation inference batch 64.",
+  "selection": "Validation only. Fixed final epoch; no test labels or predictions accessed.",
+  "timing_repeats": "Two technical sessions, reversed order. Three independent training seeds, not six."
+}

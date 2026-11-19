@@ -1,0 +1,83 @@
+# BTech report verification
+
+PASS: 75 structural and numerical checks.
+
+Report: `07_report/BTECH_RESEARCH_REPORT.md`. Approximate whitespace word count: 5075.
+
+The report has five numbered main sections, thirteen literature rows and references, eight numbered tables plus title details, and four existing figures. Main predictive metrics, paired intervals, model sizes, training costs and optimization summaries were checked against retained CSV/JSON evidence. Literature details were separately checked against primary sources; see `02_literature/BTECH_REPORT_SOURCE_NOTES.md`. No model was retrained for this writing task.
+
+- PASS: Five required numbered sections
+- PASS: 1.1 Problem Statement
+- PASS: 1.2 Motivation
+- PASS: 1.3 Novelty and Contribution
+- PASS: Nine tables including title details
+- PASS: Table 0 consistent column count
+- PASS: Table 1 consistent column count
+- PASS: Table 2 consistent column count
+- PASS: Table 3 consistent column count
+- PASS: Table 4 consistent column count
+- PASS: Table 5 consistent column count
+- PASS: Table 6 consistent column count
+- PASS: Table 7 consistent column count
+- PASS: Table 8 consistent column count
+- PASS: Thirteen distinct literature papers
+- PASS: All thirteen references defined
+- PASS: Dataset not counted as research paper
+- PASS: Balanced code fences
+- PASS: Figure exists: figures/test_curves.png
+- PASS: Figure exists: figures/confusion_matrices.png
+- PASS: Figure exists: figures/performance_cost.png
+- PASS: Figure exists: ../05_experiments/batch32_v2_pilot/figures/batch_size_comparison.png
+- PASS: resnet18_frozen AUROC
+- PASS: resnet18_frozen F1
+- PASS: resnet18_frozen accuracy_mean
+- PASS: resnet18_frozen recall_mean
+- PASS: resnet18_frozen specificity_mean
+- PASS: resnet18_partial AUROC
+- PASS: resnet18_partial F1
+- PASS: resnet18_partial accuracy_mean
+- PASS: resnet18_partial recall_mean
+- PASS: resnet18_partial specificity_mean
+- PASS: densenet121_partial AUROC
+- PASS: densenet121_partial F1
+- PASS: densenet121_partial accuracy_mean
+- PASS: densenet121_partial recall_mean
+- PASS: densenet121_partial specificity_mean
+- PASS: mobilenet_v3_small_partial AUROC
+- PASS: mobilenet_v3_small_partial F1
+- PASS: mobilenet_v3_small_partial accuracy_mean
+- PASS: mobilenet_v3_small_partial recall_mean
+- PASS: mobilenet_v3_small_partial specificity_mean
+- PASS: ResNet-18 partial FT minus ResNet-18 frozen delta
+- PASS: ResNet-18 partial FT minus ResNet-18 frozen interval
+- PASS: ResNet-18 partial FT minus DenseNet-121 partial FT delta
+- PASS: ResNet-18 partial FT minus DenseNet-121 partial FT interval
+- PASS: MobileNetV3-Small partial FT minus DenseNet-121 partial FT delta
+- PASS: MobileNetV3-Small partial FT minus DenseNet-121 partial FT interval
+- PASS: resnet18_partial parameter count
+- PASS: resnet18_partial weights_mib
+- PASS: resnet18_partial training_minutes_mean
+- PASS: resnet18_partial training_peak_mib
+- PASS: densenet121_partial parameter count
+- PASS: densenet121_partial weights_mib
+- PASS: densenet121_partial training_minutes_mean
+- PASS: densenet121_partial training_peak_mib
+- PASS: mobilenet_v3_small_partial parameter count
+- PASS: mobilenet_v3_small_partial weights_mib
+- PASS: mobilenet_v3_small_partial training_minutes_mean
+- PASS: mobilenet_v3_small_partial training_peak_mib
+- PASS: Optimization AUROC batch 16
+- PASS: Optimization mean_validation_f1 batch 16
+- PASS: Optimization median_adaptation_seconds_technical_runs batch 16
+- PASS: Optimization max_allocated_mib batch 16
+- PASS: Optimization updates batch 16
+- PASS: Optimization AUROC batch 32
+- PASS: Optimization mean_validation_f1 batch 32
+- PASS: Optimization median_adaptation_seconds_technical_runs batch 32
+- PASS: Optimization max_allocated_mib batch 32
+- PASS: Optimization updates batch 32
+- PASS: Reported paired speedup
+- PASS: Reported paired time saving
+- PASS: Prior test exposure disclosed
+- PASS: Validation and test separation disclosed
+- PASS: Novelty is incremental

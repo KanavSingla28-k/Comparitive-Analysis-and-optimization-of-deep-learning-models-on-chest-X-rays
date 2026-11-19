@@ -68,3 +68,15 @@ All paths below are relative to `archive/pilot_2026-10-22/`.
 ## Next action
 
 Read `08_handoff/START_HERE.md`, review team details, demonstrate the code, apply the college template if required and present the completed comparison. The proposed batch-32 validation pilot is not executed.
+
+## Continuation — 19 November 2026
+
+The batch-32 optimization runner and independent reviewer are now implemented, with `optimize.ps1` providing preflight, execution, review and integrity verification. Source and launcher syntax checks passed. The first execution was blocked during PyTorch import by Windows Application Control (WinError 4551 / Code Integrity event 3077), before any training. This extension is **not complete experimentally**, and no new optimization statistics are claimed. See `06_results/OPTIMIZATION_EXECUTION_STATUS.md` for the exact evidence and resume command. Existing v1 experimental results remain unchanged.
+
+## Optimization extension — accepted execution 19 November 2026
+
+COMPLETE: twelve real GPU runs, saved checkpoints and validation predictions, independent numerical review and explained CSV/Markdown/JSON outputs.
+
+Batch 32 meets the predefined engineering pilot criteria; it is a candidate for this ResNet recipe. Median paired speedup was **1.253x**, equivalent to **20.17% less measured adaptation time**. Mean paired validation AUROC changed by **-0.000187** (-0.0187 percentage points). All 129 independent verification checks passed.
+
+See `06_results/BATCH_SIZE_OPTIMIZATION.md`. Earlier blocker notes are historical; they do not describe the current runtime state.

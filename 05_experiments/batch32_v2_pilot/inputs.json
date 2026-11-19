@@ -1,0 +1,30 @@
+{
+  "dataset_sha256": "2a6faaca43872b4bcf4154a79625631ab29683b41e265ab7936d0513351fe591",
+  "original_checkpoint_sha256": {
+    "05_experiments\\retrained_v1\\artifacts\\checkpoints\\densenet121_partial_seed42.pt": "e64dc1ed1d33f352d06a83d0703876a3b2b3dd7dcfac3058c9a193b728332c05",
+    "05_experiments\\retrained_v1\\artifacts\\checkpoints\\densenet121_partial_seed43.pt": "e4c8c83e1b7a3f26e96f5314ef99138eead5beac0354d7f082d56cd6c9797d11",
+    "05_experiments\\retrained_v1\\artifacts\\checkpoints\\densenet121_partial_seed44.pt": "e33b97cd2b9bf418efc16e45c29e2b722c6c191d5169479b897f56da1e60c87c",
+    "05_experiments\\retrained_v1\\artifacts\\checkpoints\\mobilenet_v3_small_partial_seed42.pt": "666c0dba5339c9e055496b76faa753b3cb34f55eb0e85ed9040fbfc03ebac27b",
+    "05_experiments\\retrained_v1\\artifacts\\checkpoints\\mobilenet_v3_small_partial_seed43.pt": "b2da33e20dee50a3fbefde1317ced58a264f09f6ce456ded065a9e37eac2c31b",
+    "05_experiments\\retrained_v1\\artifacts\\checkpoints\\mobilenet_v3_small_partial_seed44.pt": "7653a5476faf10aa8ba50dbbe3d2bee477a7383e44ca19a66d18d85c8e1cb5e5",
+    "05_experiments\\retrained_v1\\artifacts\\checkpoints\\resnet18_frozen_seed42.pt": "a3cdc1783f7fddcd11530fd0c10abd859d0ce70ffd26c60b194f6e274de5bc1c",
+    "05_experiments\\retrained_v1\\artifacts\\checkpoints\\resnet18_frozen_seed43.pt": "07c9f78514139135fa2ba8c64c6fb92f96dd09cf1a0fac525ba060e80d7e17e1",
+    "05_experiments\\retrained_v1\\artifacts\\checkpoints\\resnet18_frozen_seed44.pt": "b195a287eec5eb5d6225961cb856faaf3085b9773fdce0d0b4f21a834895c59a",
+    "05_experiments\\retrained_v1\\artifacts\\checkpoints\\resnet18_partial_seed42.pt": "3aa0805cd091c7111d99f6482ec742e885f2cff83062202dcc935463a4f5f9b5",
+    "05_experiments\\retrained_v1\\artifacts\\checkpoints\\resnet18_partial_seed43.pt": "1d1d26689c21b82df80e99b2e51855fd3dd3e82c0e8ad5a812ca8529da4c20d6",
+    "05_experiments\\retrained_v1\\artifacts\\checkpoints\\resnet18_partial_seed44.pt": "356be21475a01cc63371ef22c072f9525b44c415568b809545534e2e4d4a232b",
+    "05_experiments\\retrained_v1\\artifacts\\checkpoints\\resnet18_shared_seed42.pt": "576668a6642f29718bbe3beb59fbd882876ff00d204af8280da90be0be785d70",
+    "05_experiments\\retrained_v1\\artifacts\\checkpoints\\resnet18_shared_seed43.pt": "0c278a859e2ead7bed791f1cb60d4c3cbf653ff961b528a43b015c86b815bb40",
+    "05_experiments\\retrained_v1\\artifacts\\checkpoints\\resnet18_shared_seed44.pt": "67ef80316a728ffe4014c544c6c61b2adc9f38e5752021e77ab8bc69382fa16e"
+  },
+  "source_sha256": {
+    "batch32_pilot.py": "14d67bc8c16d9549941c61d2788eebfc0f6b9b31ad3e40b346b94399b9ed256a",
+    "experiment.py": "faa8f8898731211fbbc0946a44593d49fdc791fe44b3b1683f4b2b33dfe84d20",
+    "settings.py": "3d4c299260021602fa402abefaa1a8f5fb774c866780021762f2a60ba35d2dc1",
+    "runtime.py": "95e35eef9d1da36cea7df346f8e6e647ccf99ae8fc127340b6dee70b1a2564b7"
+  },
+  "index_sha256": {
+    "train": "622877255bb9a46701e796b2ff5b4308c8fd04604aab6ca395fd0912016fd89c",
+    "val": "9d8fe7015ca541541b7fd5c4e2c69745f29d6954f80dcf61dc9684d9ae9ab08a"
+  }
+}
