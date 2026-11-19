@@ -245,3 +245,18 @@ From the project root, `./run.ps1 reproduce-results -RunDir '05_experiments/demo
 - [R5] Ke et al. (2021). [CheXtransfer: Performance and Parameter Efficiency of ImageNet Models for Chest X-Ray Interpretation](https://arxiv.org/abs/2101.06871). The study evaluates transfer and truncation on CheXpert, reporting an average parameter-efficiency improvement without a statistically significant drop in its comparison. That does not prove equivalence; our fine-tuning control does not reproduce truncation.
 
 - [R6] Yang et al. (2023). [MedMNIST v2 - A large-scale lightweight benchmark for 2D and 3D biomedical image classification](https://www.nature.com/articles/s41597-022-01721-8). The 2023 paper describes the standardized MedMNIST v2 collection at 28-pixel resolution. Our actual 224-pixel MedMNIST+ file is identified separately by its release record and checksum, rather than being an upscaled copy of the paper's 28-pixel images.
+
+## 13. Completed batch-size optimization extension
+
+Executed 19 November 2026 under protocol `cxr_batch32_v2_pilot`.
+
+Batch 32 meets the predefined engineering pilot criteria; it is a candidate for this ResNet recipe. Median paired speedup was **1.253x**, equivalent to **20.17% less measured adaptation time**. Mean paired validation AUROC changed by **-0.000187** (-0.0187 percentage points). All 129 independent verification checks passed.
+
+| Physical batch | Validation AUROC mean +/- seed SD | Mean validation F1 | Median adaptation seconds | Max allocated MiB |
+| --- | --- | --- | --- | --- |
+| 16 | 0.999124 +/- 0.000385 | 0.992699 | 14.253 | 735.1 |
+| 32 | 0.998937 +/- 0.000358 | 0.990082 | 11.290 | 744.8 |
+
+These are validation results for ResNet-18 only, with three seeds and two technical timing sessions per seed/settings pair. Timing includes three adaptation epochs and per-epoch validation, excluding model loading, warm-up and checkpoint saving. Two sessions reproduce the same trained states and do not increase the number of independent seeds. Batch 32 halves optimizer updates from 882 to 441 over the same 14,094 training-image presentations. V2 pre-generates paired rotations for the full epoch and therefore reruns its own batch-16 control. Do not compare these validation scores directly to the earlier v1 test table. No new test evaluation or statistical equivalence claim is made. The v1 test set remains previously inspected. The gain does not change model parameter count or establish a hardware optimization ceiling.
+
+See [the optimization report](../06_results/BATCH_SIZE_OPTIMIZATION.md), [all pilot results](../05_experiments/batch32_v2_pilot/OPTIMIZATION_REPORT.md), [independent verification](../05_experiments/batch32_v2_pilot/INDEPENDENT_REVIEW.md) and [reproducible implementation](../04_implementation/src/batch32_pilot.py).

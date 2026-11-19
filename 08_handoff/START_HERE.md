@@ -7,8 +7,10 @@ The comparison uses three pretrained CNNs, three seeds and a five-epoch recipe o
 From this folder:
 
 ```powershell
-.un.ps1 verify
-.un.ps1 reproduce-results -RunDir '05_experiments/supervisor_demo_new'
+.
+un.ps1 verify
+.
+un.ps1 reproduce-results -RunDir '05_experiments/supervisor_demo_new'
 .inalize.ps1 verify-package
 ```
 
@@ -19,3 +21,9 @@ Preserve the whole root folder for offline handover, including the dated archive
 What you should do: check the supplied names and roll-number mapping, read the limitations, apply a required college template, demonstrate the code and checkpoint replay, and submit through your normal college process. Supervisor approval was not invented. The proposed batch-32 validation pilot remains future work.
 
 Present short hardware timing estimates as engineering probes. Do not claim clinical deployment, universal superiority, equivalence, compression, an absolute GPU batch maximum or guaranteed training acceleration.
+
+## Optimization extension completed — 19 November 2026
+
+Batch 32 meets the predefined engineering pilot criteria; it is a candidate for this ResNet recipe. Median paired speedup was **1.253x**, equivalent to **20.17% less measured adaptation time**. Mean paired validation AUROC changed by **-0.000187** (-0.0187 percentage points). All 129 independent verification checks passed.
+
+See [the report](../06_results/BATCH_SIZE_OPTIMIZATION.md). Earlier references to this pilot as unexecuted are historical. Use `./optimize.ps1 -Stage verify` for its dedicated integrity check. Keep the original three-model test comparison separate from these validation results.

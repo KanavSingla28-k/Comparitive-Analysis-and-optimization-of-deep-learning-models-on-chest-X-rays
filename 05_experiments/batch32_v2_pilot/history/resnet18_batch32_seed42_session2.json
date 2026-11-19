@@ -1,0 +1,31 @@
+{
+  "run_id": "resnet18_batch32_seed42_session2",
+  "start_checkpoint": "05_experiments\\retrained_v1\\artifacts\\checkpoints\\resnet18_shared_seed42.pt",
+  "start_file_sha256": "576668a6642f29718bbe3beb59fbd882876ff00d204af8280da90be0be785d70",
+  "start_state_sha256": "36c563fdc91171cffad8ec3d8450de7f03215e0593f40635384b24bfe42985c7",
+  "final_state_sha256": "984314a7a582a0997ab45d0aff9332edbeeded1b3406b5f26d6d71c7445c4b5e",
+  "checkpoint_sha256": "1afec3bf6c339d129aa0f6974efe04d884d6aa1ef5fe1d01b7fcf316f955daaf",
+  "trainable_names": [
+    "layer4.0.conv1.weight",
+    "layer4.0.bn1.weight",
+    "layer4.0.bn1.bias",
+    "layer4.0.conv2.weight",
+    "layer4.0.bn2.weight",
+    "layer4.0.bn2.bias",
+    "layer4.0.downsample.0.weight",
+    "layer4.0.downsample.1.weight",
+    "layer4.0.downsample.1.bias",
+    "layer4.1.conv1.weight",
+    "layer4.1.bn1.weight",
+    "layer4.1.bn1.bias",
+    "layer4.1.conv2.weight",
+    "layer4.1.bn2.weight",
+    "layer4.1.bn2.bias",
+    "fc.weight",
+    "fc.bias"
+  ],
+  "gpu_before": "name, memory.total [MiB], memory.used [MiB], power.draw [W], temperature.gpu\nNVIDIA GeForce RTX 4050 Laptop GPU, 6141 MiB, 1364 MiB, 41.37 W, 62",
+  "gpu_after": "name, memory.total [MiB], memory.used [MiB], power.draw [W], temperature.gpu\nNVIDIA GeForce RTX 4050 Laptop GPU, 6141 MiB, 1355 MiB, 63.04 W, 72",
+  "frozen_tensors_unchanged": true,
+  "saved_checkpoint_replay_max_abs_difference": 0.0
+}
